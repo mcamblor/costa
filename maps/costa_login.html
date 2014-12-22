@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Costa Humboldt</title>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
+<style type="text/css">
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
+<style>
+      html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+</style>
+
+</head>
+<body>
+<h1>Costa Humboldt</h1>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Ingreso de Usuario</h3>
+    </div>
+    <div class="panel-body">
+        <div class="bs-example">
+            <form action="costa_validate.php" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputUsuario" class="control-label col-xs-2">Nombre usuario</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputUsuario" name="usuario" placeholder="Nombre usuario">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">Contraseña</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="inputPassword" name="clave_" placeholder="Clave">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Recuérdame</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Registro de Usuario</h3>
+    </div>
+    <div class="panel-body">
+        <div class="bs-example">
+            <form action="addReg_usuario.php" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputNombre-reg" class="control-label col-xs-2">Nombre</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputNombre-reg" name="nombre" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputApellidoMat-reg" class="control-label col-xs-2">Apellido Paterno</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputApellidoMat-reg" name="apellido_pat" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputApellidoMat-reg" class="control-label col-xs-2">Apellido Materno</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputApellidoMat-reg" name="apellido_mat" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFechaNac-reg" class="control-label col-xs-2">Fecha Nac</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputFechaNac-reg" value="2014/05/05" name="fecha_nac" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputGenero-reg" class="control-label col-xs-2">Género</label>
+                    <div class="col-xs-10">
+                        <label class="radio-inline">
+                          <input type="radio" class="genero" name="genero" value="Masculino" > M
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="genero"  name="genero" value="Femenino" > F
+                        </label>
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNombreUsuario-reg" class="control-label col-xs-2">Nombre Usuario</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputNombreUsuario-reg" name="nombre_usuario" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail-reg" class="control-label col-xs-2">Correo electrónico</label>
+                    <div class="col-xs-10">
+                        <input type="email" class="form-control" id="inputEmail-reg" name="correo_electronico" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputClave" class="control-label col-xs-2">Contraseña</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="inputClave" name="clave" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAnios-reg" class="control-label col-xs-2">Años de Buceo</label>
+                    <div class="col-xs-10">
+                        <input type="number" class="form-control" id="inputAnios-reg" name="anios_buceo" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputHrs-reg" class="control-label col-xs-2">Horas de Buceo</label>
+                    <div class="col-xs-10">
+                        <input type="number" class="form-control" id="inputHrs-reg" name="hrs_buceo" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCiudad-reg" class="control-label col-xs-2">Ciudad</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputCiudad-reg" value="5" name="ciudad" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEduc-reg" class="control-label col-xs-2">Educación</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputEduc-reg" value="Media" name="educacion" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputExperiencia-reg" class="control-label col-xs-2">Experiencia</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputExperiencia-reg" value="Novato" name="experiencia" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputRegion-reg" class="control-label col-xs-2">Región</label>
+                      <div class="col-xs-8">
+                        <select id="region" class="form-control" name="region">
+                            <?php
+                            include("costa_getRegion.php");
+                            ?>
+                        </select>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCC" class="control-label col-xs-2">Centro de Buceo</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputCC" value="1" name="centro_buceo" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Leí las condiciones y servicios</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="submit" class="btn btn-primary">Regístrate</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>                                 		

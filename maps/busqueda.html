@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Costa Humboldt</title>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
+<style type="text/css">
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
+<style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+// This example adds a user-editable rectangle to the map.
+
+function initialize() {
+  var myLatLng = new google.maps.LatLng(-36.7390, -71.05749);
+  var mapOptions = {
+    center: myLatLng,
+    zoom: 5
+  };
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  google.maps.event.addListener(map, 'click', function(e) {
+    placeMarker(e.latLng, map);
+  });
+
+// [START region_rectangle]
+  var bounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(-32.992, -71.587),
+      new google.maps.LatLng(-32.192, -70.787)
+  );
+
+  // Define a rectangle and set its editable property to true.
+  var rectangle = new google.maps.Rectangle({
+    bounds: bounds,
+    editable: true
+  });
+
+  rectangle.setMap(map);
+// [END region_rectangle]
+
+
+    var infowindow = new google.maps.InfoWindow({
+    content: 'Change the zoom level',
+    position: myLatLng
+  });
+  infowindow.open(map);
+
+  google.maps.event.addListener(map, 'zoom_changed', function() {
+    var zoomLevel = map.getZoom();
+    map.setCenter(myLatLng);
+    infowindow.setContent('Zoom: ' + zoomLevel);
+  });
+}
+
+function placeMarker(position, map) {
+  var marker = new google.maps.Marker({
+    position: position,
+    map: map
+  });
+  map.panTo(position);
+  alert(position);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+</head>
+<body>
+<div class="bs-example">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="inputEmail" class="control-label col-xs-2">Email</label>
+            <div class="col-xs-10">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="control-label col-xs-2">Password</label>
+            <div class="col-xs-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="map-canvas"></div>
+</body>
+</html>                                 		
