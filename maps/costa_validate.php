@@ -3,14 +3,6 @@
 $usuario = $_POST['usuario'];
 $pass = $_POST['clave_'];
 
-/* A continuación, realizamos la conexión con nuestra base de datos en MySQL */
-$link = mysql_connect("localhost","costa_bd","costa_bd");
-if (!$link) {
-    die('No pudo conectar: ' . mysql_error());
-}
-
-mysql_select_db("costa_bd");
-
 $myusuario = mysql_query("SELECT nombre_usuario FROM usuario WHERE nombre_usuario='{$usuario}' limit 1");
 $nmyusuario = mysql_num_rows($myusuario);
 

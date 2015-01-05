@@ -1,6 +1,5 @@
 <?php
-include("costa_seguridad.php");
-$usuario = $_SESSION["usuarioactual"];
+$usuario = "";//$_SESSION["usuarioactual"];
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +31,8 @@ $usuario = $_SESSION["usuarioactual"];
 var idusuario = '<?php echo $usuario;?>';
 
 /*Variables para Registro de Especies*/
-var top20_especies = "<?php include('costa_getEspecies20.php'); ?>";
-var all_especies = "<?php include('costa_getEspecies.php'); ?>";
+var top20_especies = "";
+var all_especies = "";
 </script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -211,9 +210,6 @@ var all_especies = "<?php include('costa_getEspecies.php'); ?>";
                       <label for="habitat" class="control-label col-xs-2 habitat" data-placement="top" data-toggle="tooltip" title="Indique el habitat y sustrato que se registro en la mayor parte del buceo">Hábitat</label>
                       <div class="col-xs-3">
                         <select id="habitat" class="form-control">
-                            <?php
-                            include("costa_getHabitat.php");
-                            ?>
                         </select>
                       </div>
                   </div>                  
@@ -316,14 +312,8 @@ var all_especies = "<?php include('costa_getEspecies.php'); ?>";
                           <select id="1" class="form-control select-especie">
                               <option value="0" selected>Seleccione especie</option>
                               <optgroup label="Top 20">
-                                <?php
-                                include("costa_getEspecies20.php");
-                                ?>
                               </optgroup>
                               <optgroup label="Todos">
-                                <?php
-                                include("costa_getEspecies.php");
-                                ?>
                               </optgroup>
                           </select>
                         </div>
@@ -357,40 +347,6 @@ var all_especies = "<?php include('costa_getEspecies.php'); ?>";
         <p class="text-muted">Desarrollado por Manija.</p>
       </div>
     </div>
-
-    <div class="modal fade" id="reg-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Respuesta de solicitud</h4>
-          </div>
-          <div class="modal-body">
-            <p>Registro realizado con éxito</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Ok!</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <div class="modal fade" id="reg-err-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Respuesta de solicitud</h4>
-          </div>
-          <div class="modal-body">
-            <p>Ha ocurrido un problema con la recepción de los datos, inténtalo nuevamente.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Ok!</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
 </body>
 </html>                                 		

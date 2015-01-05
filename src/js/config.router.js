@@ -17,7 +17,7 @@ angular.module('app')
       function ($stateProvider,   $urlRouterProvider) {
           
           $urlRouterProvider
-              .otherwise('/app/dashboard-v1');
+              .otherwise('/app/dashboard-v2');
           $stateProvider
               .state('app', {
                   abstract: true,
@@ -187,6 +187,10 @@ angular.module('app')
                           return uiLoad.load('js/controllers/form.js');
                       }]
                   }
+              })
+              .state('app.form.new', {
+                  url: '/new',
+                  templateUrl: 'tpl/form_new.html'
               })
               .state('app.form.elements', {
                   url: '/elements',

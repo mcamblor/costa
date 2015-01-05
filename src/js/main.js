@@ -12,8 +12,8 @@ angular.module('app')
 
       // config
       $scope.app = {
-        name: 'Angulr',
-        version: '1.3.3',
+        name: 'Costa Humboldt',
+        version: '1',
         // for chart colors
         color: {
           primary: '#7266ba',

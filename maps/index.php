@@ -1,3 +1,3 @@
 <?php
-header ("Location: costa_home.php");
+header ("Location: tpl/home.html");
 ?>
