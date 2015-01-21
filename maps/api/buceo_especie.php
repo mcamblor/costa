@@ -2,7 +2,17 @@
 require_once("global.php");
 require_once("bd.php");
 
-echo getEspeciesByIdBuceo($_GET['buceos']);
+if(isset($_GET['function'])){
+    switch ($_GET['function']) {
+        case "getEspeciesByIdBuceo":
+            echo getEspeciesByIdBuceo($_GET['buceos']);
+            break;
+        case "getDensidadByIdEspecie":
+            echo getDensidadByIdEspecie($_GET['densidad'],$_GET['buceos']);
+            break;
+    }
+}
+
                   
 function getEspeciesByIdBuceo($ids){
     $especies = array();
@@ -20,19 +30,19 @@ function getEspeciesByIdBuceo($ids){
     return json_encode($especies);
 }
 
-function getDensidadByIdEspecie(){
-    /*
-    $sql = "SELECT abundancia, COUNT( abundancia ) AS count
-            FROM buceo_especie
-            WHERE id_especie = 
-            GROUP BY abundancia
-            ORDER BY count DESC 
-            LIMIT 1";
-    $densidad = mysqli_query($link,$sql);
-    if( mysqli_num_rows($densidad) > 0 ){
-        $temp = mysqli_fetch_assoc($densidad);
-        $row['abundancia'] = $temp['abundancia'];
+function getDensidadByIdEspecie($ids_especies, $id_buceos){
+    $densidad = array();
+    $link = connect_bd();
+    $sql = "SELECT id_especie, abundancia+0 as abundancia, COUNT( abundancia ) AS count FROM buceo_especie WHERE id_buceo IN (".$id_buceos.") AND id_especie IN (".$ids_especies.") AND abundancia IS NOT NULL GROUP BY abundancia, id_especie";
+    $result = mysqli_query($link,$sql);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($densidad, $row);
+        }
     }
-    */
+    mysqli_free_result($result);
+    disconnect_bd($link);
+
+    return json_encode($densidad);
 }
 ?>
