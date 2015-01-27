@@ -1,0 +1,43 @@
+# VODKA - Proyecto WEB
+
+## Plugins
+
+### Terceros
+Para el desarrollo de esta versión, se utilizaron varios plugins de terceros
+los cuales se detallan a continuación
+
+#### Javascript
+> //code.jquery.com/jquery-1.10.2.min.js"
+  Plugin de JQuery para poder trabajar más fácilmente con los elementos HTML
+> //code.jquery.com/ui/1.10.3/jquery-ui.min.js
+  Plugin de complemento para jQuery. Permite agregar nuevas funcionalidades, de
+  las cuales se está utilizando el Slider.
+> //cdn.jsdelivr.net/jquery.ui.touch-punch/0.2.3/jquery.ui.touch-punch.min.js
+  Utilizado para aumentar la compatibilidad de los eventos con mouse a los
+  eventos touch
+> //ricostacruz.com/jquery.transit/jquery.transit.min.js"
+  Agrega los efectos
+> ol-debug.js
+  Es el core de la aplicación, permite la funcionalidad del mapa en su totalidad
+#### CSS
+> //code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css
+  Diseños por defecto de jQuery.UI
+> //openlayers.org/en/v3.0.0/css/ol.css
+  Diseños por defecto de OpenLayers
+
+### Propios
+Los archivos propios se encargan de entrelazar la funcionalidad de los plugins
+para crear el producto
+
+#### Javascript
+> javascript.js
+  Agrega funcionalidades a la aplicación. Cabe destacar, que este código no es
+  el final y está desarrollado solo para cumplir con la entrega del viernes
+  20 de Noviembre.
+> overrides.js
+  Sobreescrituras de las funciones internas de plugins
+> effects.js
+  Javascript relacionado únicamente con interacciones con efectos
+#### CSS
+> style.css
+  Estilos creados para la aplicación

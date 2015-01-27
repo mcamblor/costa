@@ -1,0 +1,56 @@
+{
+  "name": "OpenShift-Sample-App",
+  "version": "1.0.0",
+  "description": "OpenShift Sample Application",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
+  ],
+  "author": {
+    "name": "OpenShift",
+    "email": "ramr@example.org",
+    "url": "http://www.openshift.com/"
+  },
+  "homepage": "http://www.openshift.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openshift/origin-server"
+  },
+
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
+
+  "dependencies": {
+    "express": "~3.4.4"
+  },
+  "devDependencies": {
+    "clean-css": "*",
+    "uglify-js": "*",
+    "time-grunt": "*",
+    "grunt": "~0.4.2",
+    "grunt-devtools": "*",
+    "load-grunt-tasks": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-imagemin" : "0.4.0",
+    "grunt-concat-sourcemap" : "*",
+    "grunt-newer": "*",
+    "jpegtran-bin": "*",
+    "optipng-bin": "*",
+    "gifsicle": "*"
+  },
+  "bundleDependencies": [],
+
+  "private": true,
+  "main": "server.js"
+}
