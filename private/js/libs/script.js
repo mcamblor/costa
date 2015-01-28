@@ -26,7 +26,6 @@ $(document).on("ready", function(){
     
     /************************************/
     /** Ruteo **/
-    
     var route = $('a.ruteo').Ruteo();
     if (window.location.hash === "" && history.state != null)
     {
@@ -34,7 +33,7 @@ $(document).on("ready", function(){
     }
     else if (window.location.hash != "")
     {
-        route.cambiar(window.location.hash.substr(1));
+        route.cambiar(window.location.hash.substr(2));
     }
     else route.cambiar("home");
     /*
@@ -95,11 +94,41 @@ $(document).on("ready", function(){
     
     $("#especie-autocomplete").autocomplete({
         minChars: 1,
-        serviceUrl:'../api/especies.php?function=autocomplete',
+        serviceUrl:'api/especies.php?function=autocomplete',
         onSelect: function (suggestion) {
-            console.log("onSelect");
-            $.getJSON("../api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
-                bootbox.alert("Modal para ficha con id : " + suggestion.data + "\n" + JSON.stringify(data));
+            $.getJSON("api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
+              
+                var ficha = '<div class="row">'+
+
+                              '<div class="col-md-8">'+
+                                  '<p><b>Nombre Común</b></p>' +
+                                  '<p><b>Nombre Científico</b></p>' +
+                                  '<p><b>Kingdom</b></p>' +
+                                  '<p><b>Phylum</b></p>' +
+                                  '<p><b>Class</b></p>' +
+                                  '<p><b>Order</b></p>' +
+                                  '<p><b>Family</b></p>' +
+                                  '<p><b>Genus</b></p>' +
+                                  '<p><b>Aphia</b></p>' +
+                              '</div>' +
+
+                              '<div class="col-md-4">' +
+                                  '<p>' + data.nombre_comun + '</p>' +
+                                  '<p>' + data.nombre_cientifico + '</p>' +
+                                  '<p>' + data.kingdom + '</p>' +
+                                  '<p>' + data.phylum + '</p>' +
+                                  '<p>' + data.class + '</p>' +
+                                  '<p>' + data.order + '</p>' +
+                                  '<p>' + data.family + '</p>' +
+                                  '<p>' + data.genus + '</p>' +
+                                  '<p>' + data.aphia + '</p>' +
+                              '</div>' +
+
+                            '</div>';
+                bootbox.dialog({
+                  message: ficha,
+                  title: "Ficha Especie"
+                });
             });
         },
         showNoSuggestionNotice: true,

@@ -3,10 +3,12 @@
 
     $.fn.Registro = function(){
       
-        var map;
-        var marker;
+        var validaciones = {}
+          , map
+          , marcador
+        ;
 
-        var validaciones =
+        validaciones =
         {
             submitButtons: 'a.next',
             fields: {
@@ -106,18 +108,22 @@
                 }
               }
             }
-        };
+        }; //./ Validaciones
 
         $('#rootwizard').bootstrapWizard(
         {
             onTabClick: function(tab, navigation, index) {
                 return false;
-            },
-            onNext: function(tab, navigation, index) {
+            }
+          , onNext: function(tab, navigation, index) {
                 switch(index) {
                     case 1:
-                        console.log("Habemus paso 1");
-                        $("form#buceo").bootstrapValidator(validaciones);
+                        if (typeof marcador === "undefined") {
+                            bootbox.alert("Debe seleccionar un punto en el mapa!");
+                            return false;
+                        }
+                        else
+                          $("form#buceo").bootstrapValidator(validaciones);
                         break;
                     case 2:
                         console.log("Habemus paso 2");
@@ -181,13 +187,22 @@
                 drawingModes: [google.maps.drawing.OverlayType.MARKER]
               },
               markerOptions: {
+                editable: true,
+                crossOnDrag: true,
+                draggable: true,
                 icon: new google.maps.MarkerImage('img/diving.png')
               }
             });
             google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
                 $('#latitud').val(marker.position.lat());
                 $('#longitud').val(marker.position.lng());
+                marcador = marker;
+                google.maps.event.addListener(marcador, 'drag', function() { this.setTitle(this.getPosition().toString()); } );
+                this.setDrawingMode(null);
+                this.setMap(null);
             });
+          
+            
             drawingManager.setMap(map);
 
             var homeControlDiv = document.createElement('div');
