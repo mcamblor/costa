@@ -68,7 +68,7 @@ function nuevoUsuario($usuario){
     $sql .= "'".$user['ciudad']."',";
     $sql .= "'".$user['educacion']."',";
     $sql .= "'".$user['experiencia']."',";
-    $sql .= "'".$user['region']."',";
+    $sql .= "'".$user['regiones']."',";
     $sql .= "'".$user['centro_buceo']."'";
     $sql .= ")";
     $result = mysqli_query($link,$sql);

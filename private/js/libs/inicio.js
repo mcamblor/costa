@@ -73,6 +73,16 @@
               }
           }
         };
+
+        function completarSelect(campo){
+            $.getJSON("api/"+campo+".php?function=get",function(data){
+                var options = "";
+                for (var i = 0, len = data.length; i<len; ++i){
+                    options +=  "<option value='" + data[i].id + "'>" + data[i].data + "</option>";
+                }
+                $("[name='"+campo+"']").html(options);
+            });
+        }
       
         $('.registrate').on('click', function(){
           $.get('tpl/modalRegistro.html', function(html){
@@ -82,6 +92,8 @@
                   message: html
                   }
               );
+              completarSelect("regiones");
+              completarSelect("centro_buceo");
               $('#nuevo-usuario')
               .bootstrapValidator(validaciones)
               .on('success.form.bv', function(e) {

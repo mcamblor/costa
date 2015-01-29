@@ -109,7 +109,17 @@
               }
             }
         }; //./ Validaciones
-
+        
+        function completarSelect(campo){
+            $.getJSON("api/"+campo+".php?function=get",function(data){
+                var options = "";
+                for (var i = 0, len = data.length; i<len; ++i){
+                    options +=  "<option value='" + data[i].id + "'>" + data[i].data + "</option>";
+                }
+                $("[name='"+campo+"']").html(options);
+            });
+        }
+      
         $('#rootwizard').bootstrapWizard(
         {
             onTabClick: function(tab, navigation, index) {
@@ -123,6 +133,7 @@
                             return false;
                         }
                         else
+                          completarSelect("habitat");
                           $("form#buceo").bootstrapValidator(validaciones);
                         break;
                     case 2:
