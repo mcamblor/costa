@@ -18,7 +18,7 @@ if(isset($_POST['function'])){
 function login(){
     $response = new stdClass();
     $link = connect_bd();
-    $sql = "SELECT * FROM usuarios WHERE email='".$_POST['email']."' AND pass='".$_POST['pass']."' limit 1";
+    $sql = "SELECT * FROM usuarios WHERE email='".$_POST['email']."' AND pass=MD5('".$_POST['pass']."') limit 1";
     $result = mysqli_query($link,$sql);
     if( mysqli_num_rows($result) != 0 ){
         $row = mysqli_fetch_assoc($result);

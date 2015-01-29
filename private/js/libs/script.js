@@ -29,13 +29,13 @@ $(document).on("ready", function(){
     var route = $('a.ruteo').Ruteo();
     if (window.location.hash === "" && history.state != null)
     {
-        route.cambiar(history.state.substr(3) || "home");
+        route.cambiar(history.state.substr(3) || "inicio");
     }
     else if (window.location.hash != "")
     {
         route.cambiar(window.location.hash.substr(2));
     }
-    else route.cambiar("home");
+    else route.cambiar("inicio");
     /*
     window.onpopstate = function(event) {
       route.cambiar(event.state.substr(1));

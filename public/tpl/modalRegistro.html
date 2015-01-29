@@ -1,160 +1,131 @@
-<!-- Modal -->
-<div class="modal fade" id="registro-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Registro de usuario</h4>
+<form id="nuevo-usuario" class="form-horizontal">
+  <div class="row">
+      <div class="col-xs-6">
+        
+        <div class="form-group">
+            <label>Nombre Usuario</label>
+            <input type="text" class="form-control" name="nombre_usuario">
+        </div>
+
+        <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" class="form-control" name="email">
+        </div>
+
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" name="nombre">
+        </div>
+
+        <div class="form-group">
+            <label>Apellido Paterno</label>
+            <input type="text" class="form-control" name="apellido_pat">
+        </div>
+
+        <div class="form-group">
+            <label>Apellido Materno</label>
+            <input type="text" class="form-control" name="apellido_mat">
+        </div>
+
+        <div class="form-group">
+            <label>Fecha Nacimiento</label>
+            <input type="text" class="form-control" name="fecha_nac">
+        </div>
+
+        <div class="form-group">
+            <label>Género</label>
+            <div>
+                <label class="radio-inline">
+                  <input type="radio" class="genero" name="genero" value="Masculino" checked> Masculino
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" class="genero"  name="genero" value="Femenino" > Femenino
+                </label>
+            </div>
+        </div>
+        
       </div>
-      <div class="modal-body">
-          <form action="addReg_usuario.php" id="form-registro" method="post" class="form-horizontal">
-              <div class="form-group">
-                  <label for="inputNombre-reg" class="control-label col-xs-2">Nombre</label>
-                  <div class="col-xs-10">
-                      <input type="text" class="form-control" id="inputNombre-reg" name="nombre">
-                  </div>
-              </div>
+      
+      <div class="col-xs-6">
 
-              <div class="form-group">
-                  <label for="inputApellidoMat-reg" class="control-label col-xs-2">Apellido Paterno</label>
-                  <div class="col-xs-10">
-                      <input type="text" class="form-control" id="inputApellidoMat-reg" name="apellido_pat">
-                  </div>
-              </div>
+        <div class="form-group">
+            <label >Contraseña</label>
+            <input type="password" class="form-control" name="pass">
+        </div>
 
-              <div class="form-group">
-                  <label for="inputApellidoMat-reg" class="control-label col-xs-2">Apellido Materno</label>
-                  <div class="col-xs-10">
-                      <input type="text" class="form-control" id="inputApellidoMat-reg" name="apellido_mat">
-                  </div>
-              </div>
+        <div class="form-group">
+            <label>Años de Buceo</label>
+            <input type="text" class="form-control" name="anios_buceo">
+        </div>
 
-              <div class="form-group">
-                  <label for="inputFechaNac-reg" class="control-label col-xs-2">Fecha Nacimiento</label>
-                  <div class="col-xs-10">
-                      <input type="text" class="form-control" id="inputFechaNac-reg" value="2014/05/05" name="fecha_nac">
-                  </div>
-              </div>
+        <div class="form-group">
+            <label >Horas de buceo</label>
+            <div>
+                <select class="form-control" name="hrs_buceo">
+                    <option value="1">Menos de 10 horas</option>
+                    <option value="2">11 - 30 horas</option>
+                    <option value="3">31 - 60 horas</option>
+                    <option value="4">61 - 100 horas</option>
+                    <option value="5">101 - 300 horas</option>
+                    <option value="6">+ 300 horas</option>
+                </select>
+            </div>
+        </div>
 
-              <div class="form-group">
-                  <label for="inputGenero-reg" class="control-label col-xs-2">Género</label>
-                  <div class="col-xs-10">
-                      <label class="radio-inline">
-                        <input type="radio" class="genero" name="genero" value="Masculino" > Masculino
-                      </label>
-                      <label class="radio-inline">
-                        <input type="radio" class="genero"  name="genero" value="Femenino" > Femenino
-                      </label>
-                  </div>
-              </div>
+        <div class="form-group">
+            <label>Ciudad</label>
+            <input type="text" class="form-control" name="ciudad">
+        </div>
 
-              <div id="div-nombre_usuario" class="form-group">
-                  <label for="inputNombreUsuario-reg" class="control-label col-xs-2">Nombre Usuario</label>
-                  <div class="col-xs-10">
-                      <input type="text" id="nombre_usuario" class="form-control" id="inputNombreUsuario-reg" name="nombre_usuario" placeholder="">
-                  </div>
-              </div>
+        <div class="form-group">
+            <label>Educación</label>
+            <div>
+                <label class="radio-inline">
+                  <input type="radio" class="educacion" name="educacion" value="Básica" checked> Básica
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" class="educacion"  name="educacion" value="Media" > Media
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" class="educacion"  name="educacion" value="Superior" > Superior
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" class="educacion"  name="educacion" value="Postítulo" > Postítulo
+                </label>
+            </div>
+        </div>
 
-              <div class="form-group">
-                  <label for="inputEmail-reg" class="control-label col-xs-2">Correo electrónico</label>
-                  <div class="col-xs-10">
-                      <input type="email" class="form-control" id="inputEmail-reg" name="correo_electronico" placeholder="">
-                  </div>
-              </div>
+        <div class="form-group">
+            <label>Experiencia</label>
+            <div>
+                <label class="radio-inline">
+                  <input type="radio" class="experiencia" name="experiencia" value="Novato" checked> Novato
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" class="experiencia"  name="experiencia" value="Experto" > Experto
+                </label>
+            </div>
+        </div>
 
-              <div class="form-group">
-                  <label for="inputClave" class="control-label col-xs-2">Contraseña</label>
-                  <div class="col-xs-10">
-                      <input type="password" class="form-control" id="inputClave" name="clave" placeholder="Máx 9 caracteres">
-                  </div>
-              </div>
+        <div class="form-group">
+            <label>Región</label>
+            <div>
+              <select class="form-control" name="region">
+                <option value="1">1</option>
+              </select>
+            </div>
+        </div>
 
-              <div class="form-group">
-                  <label for="inputAnios-reg" class="control-label col-xs-2">Años de Buceo</label>
-                  <div class="col-xs-10">
-                      <input type="number" class="form-control" id="inputAnios-reg" name="anios_buceo">
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label for="hrs-buceo" class="control-label col-xs-2">Horas de buceo</label>
-                  <div class="col-xs-10">
-                      <select id="hrs-buceo" class="form-control" name="hrs_buceo">
-                          <option value="1">Menos de 10 horas</option>
-                          <option value="2">11 - 30 horas</option>
-                          <option value="3">31 - 60 horas</option>
-                          <option value="4">61 - 100 horas</option>
-                          <option value="5">101 - 300 horas</option>
-                          <option value="6">+ 300 horas</option>
-                      </select>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label for="inputCiudad-reg" class="control-label col-xs-2">Ciudad</label>
-                  <div class="col-xs-10">
-                      <input type="text" class="form-control" id="inputCiudad-reg" name="ciudad">
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label for="inputEduc-reg" class="control-label col-xs-2">Educación</label>
-                  <div class="col-xs-10">
-                      <label class="radio-inline">
-                        <input type="radio" class="educacion" name="educacion" value="Básica" > Básica
-                      </label>
-                      <label class="radio-inline">
-                        <input type="radio" class="educacion"  name="educacion" value="Media" > Media
-                      </label>
-                      <label class="radio-inline">
-                        <input type="radio" class="educacion"  name="educacion" value="Superior" > Superior
-                      </label>
-                      <label class="radio-inline">
-                        <input type="radio" class="educacion"  name="educacion" value="Postítulo" > Postítulo
-                      </label>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label for="inputExp-reg" class="control-label col-xs-2">Experiencia</label>
-                  <div class="col-xs-10">
-                      <label class="radio-inline">
-                        <input type="radio" class="experiencia" name="experiencia" value="Novato" > Novato
-                      </label>
-                      <label class="radio-inline">
-                        <input type="radio" class="experiencia"  name="experiencia" value="Experto" > Experto
-                      </label>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label for="inputRegion-reg" class="control-label col-xs-2">Región</label>
-                    <div class="col-xs-10">
-                      <select id="inputRegion-reg" class="form-control" name="region">
-                          <?php
-                          include("costa_getRegiones.php");
-                          ?>
-                      </select>
-                    </div>
-              </div>
-
-              <div class="form-group">
-                  <label for="inputCC-reg" class="control-label col-xs-2">Centro de Buceo</label>
-                    <div class="col-xs-10">
-                      <select id="inputCC-reg" class="form-control" name="centro_buceo">
-                          <?php
-                          include("costa_getCC.php");
-                          ?>
-                      </select>
-                    </div>
-              </div>
-
-          </form>
+        <div class="form-group">
+            <label>Centro de Buceo</label>
+            <div>
+              <select class="form-control" name="centro_buceo">
+                <option value="1">1</option>
+              </select>
+            </div>
+        </div>
+        
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button id="btn-submit-registro" type="button" class="btn btn-primary">Registrarse</button>
-      </div>
-    </div>
+      <div> <input class="btn btn-success" type="submit" value="Registrarme"></div>
   </div>
-</div>
+</form>

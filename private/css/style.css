@@ -82,10 +82,6 @@ html, body {
 padding: 2px 15px;
 }
 
-/* Historial */
-
-#tabla-historial {height: 400px;}
-
 /* footer */
 
 .footer {
@@ -106,3 +102,12 @@ max-width: none;
 .autocomplete-no-suggestion { padding: 2px 5px;}
 .autocomplete-selected { background: #F0F0F0; }
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+
+.modal-content{
+  width: 800px;
+}
+
+#nuevo-usuario .form-group{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

@@ -30,6 +30,9 @@
           case '':
               $('a.ruteo').Ruteo();
               break;
+          case 'inicio':
+              $('.app-content').Inicio();
+              break;
           case 'busqueda':
               $('.app-content').Busqueda();
               break;
