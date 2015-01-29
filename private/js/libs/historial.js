@@ -70,6 +70,7 @@
                         class: 'text-center',
                         title: 'Corriente'
                     }
+                  
                 ]
             }
         ;
