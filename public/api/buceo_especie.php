@@ -17,7 +17,7 @@ if(isset($_GET['function'])){
 function getEspeciesByIdBuceo($ids){
     $especies = array();
     $link = connect_bd();
-    $sql = "SELECT id_especie as id, COUNT(id_especie) as count FROM buceo_especie WHERE id_buceo IN (".$ids.") GROUP BY id_especie";
+    $sql = "SELECT be.id_especie as id, e.nombre_comun, COUNT(be.id_especie) as count FROM buceo_especie as be LEFT JOIN especies as e ON be.id_especie = e.id AND be.id_buceo IN (".$ids.") GROUP BY id_especie";
     $result = mysqli_query($link,$sql);
     if( mysqli_num_rows($result) > 0 ){
         while ($row = mysqli_fetch_assoc($result)){
@@ -33,7 +33,8 @@ function getEspeciesByIdBuceo($ids){
 function getDensidadByIdEspecie($ids_especies, $id_buceos){
     $densidad = array();
     $link = connect_bd();
-    $sql = "SELECT id_especie, abundancia+0 as abundancia, COUNT( abundancia ) AS count FROM buceo_especie WHERE id_buceo IN (".$id_buceos.") AND id_especie IN (".$ids_especies.") AND abundancia IS NOT NULL GROUP BY abundancia, id_especie";
+    //$sql = "SELECT id_especie, abundancia+0 as abundancia, COUNT( abundancia ) AS count FROM buceo_especie WHERE id_buceo IN (".$id_buceos.") AND id_especie IN (".$ids_especies.") AND abundancia IS NOT NULL GROUP BY abundancia, id_especie";
+    $sql = "SELECT be.id_especie, e.nombre_comun, be.abundancia +0 AS abundancia, COUNT( be.abundancia ) AS count FROM buceo_especie AS be LEFT JOIN especies AS e ON be.id_especie = e.id WHERE id_buceo IN  (".$id_buceos.") AND be.id_especie IN (".$ids_especies.") AND be.abundancia IS NOT NULL GROUP BY be.abundancia, be.id_especie";
     $result = mysqli_query($link,$sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
