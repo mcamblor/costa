@@ -20,7 +20,7 @@ function getBuceos(){
     
     $buceos = array();
     $link = connect_bd();
-    $sql = "SELECT id, latitud, longitud FROM buceos";
+    $sql = "SELECT id, latitud, longitud, fecha FROM buceos";
     $result = mysqli_query($link,$sql);
     if( mysqli_num_rows($result) > 0 ){
         while ($row = mysqli_fetch_assoc($result)){

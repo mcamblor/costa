@@ -25,6 +25,11 @@
           }
 
           if(tipo = "densidad"){
+            options = {
+              title: 'Especies visualizadas',
+              vAxis: {title: 'Especies',  titleTextStyle: {color: 'red'}},
+              hAxis: { ticks: [{v:0, f:''},{v:1, f:'Único'}, {v:2, f:'Poco Abundante'}, {v:3, f:'Abundante'}, {v:4, f:'Muy Abundate'}] }
+            };
              cartDensidad.draw(datosDensidad, options);
           }
 
@@ -62,7 +67,7 @@
                           var arreglo = [];
                           arreglo.push(['Especie', 'Frecuencia']);
                           $(data).each(function(index,element){
-                              arreglo.push([element.id, element.count/total]);
+                              arreglo.push([element.nombre_comun, element.count/total]);
                               array_densidad.push(element.id);
                           });
 
@@ -74,8 +79,7 @@
                               var array_especies = [];
                               array_especies.push(['Especie', 'Densidad']);
                               $(array_densidad).each(function(index,element){
-
-                                  array_especies.push([element.id_especie, parseInt(element.abundancia)]);
+                                  array_especies.push([element.nombre_comun, parseInt(element.abundancia)]);
                               });
 
                               datosDensidad = google.visualization.arrayToDataTable(array_especies);
@@ -118,7 +122,9 @@
               $(markers).each(function(index, marker){
 
                   if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+                    if($("input[name='fechaInicio']").val() < marker.fecha &&  $("input[name='fechaFin']").val() > marker.fecha){
                       marker.setVisible(true);
+                    }
                   } else {
                       marker.setVisible(false);
                   }
@@ -137,6 +143,7 @@
                       map: map,
                       visible: false,
                       title:"Hello World!",
+                      fecha: element.fecha,
                       icon: new google.maps.MarkerImage('../img/diving.png')
                   });
                   marker.set("id", element.id);
