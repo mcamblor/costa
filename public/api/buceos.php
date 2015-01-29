@@ -10,6 +10,9 @@ if(isset($_GET['function'])){
 	    case "getBuceoById":
 	        echo getBuceoById($_GET['id']);
 	        break;
+        case "getHistorialByIdUsuario":
+            echo getHistorialByIdUsuario($_GET['nombre_usuario']);
+            break;
 	}
 }
 
@@ -42,5 +45,25 @@ function getBuceoById($id){
     disconnect_bd($link);
     
     return json_encode($buceo);
+}
+
+
+function getHistorialByIdUsuario($nombre_usuario){
+
+    $dataArray = array();
+    $link = connect_bd();
+    $sql = "SELECT * FROM buceos WHERE nombre_usuario LIKE '".$nombre_usuario."'";
+    $result = mysqli_query($link,$sql);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($dataArray, $row);
+        }
+    }
+    mysqli_free_result($result);
+    disconnect_bd($link);
+
+    $response = new stdClass();
+    $response->data = $dataArray;
+    return json_encode($response);
 }
 ?>

@@ -36,6 +36,9 @@
           case 'registro':
               $('.app-content').Registro();
               break;
+          case 'historial':
+              $('.app-content').Historial();
+              break;
       }
       return true;
     }).fail(function(){

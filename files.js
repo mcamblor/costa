@@ -14,6 +14,7 @@ module.exports = function(coffee, less){
       , 'private/js/vendor/respond.min.js'
       , 'private/js/libs/registro.js'
       , 'private/js/libs/busqueda.js'
+      , 'private/js/libs/historial.js'
       , 'private/js/libs/ruteo.js'
       , 'private/js/libs/script.js'
     ]
