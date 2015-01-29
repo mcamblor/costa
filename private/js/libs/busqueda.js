@@ -32,6 +32,65 @@
 
       var map;
       var markers = [];
+
+      $('#rootwizard').bootstrapWizard(
+      {
+          onTabClick: function(tab, navigation, index) {
+              return false;
+          },
+          onNext: function(tab, navigation, index) {
+              switch(index) {
+                  case 1:
+                      console.log("Habemus paso 1");
+                      var data = [];
+                      var id_buceos = [];
+                      $(markers).each(function(index, marker){
+                          if (marker.getVisible()) {
+                              data.push( marker.get('id') );
+                              id_buceos.push(marker.get('id'));
+                          }
+                      });
+
+                      var total = data.length;
+                      if ( data.length === 0 ) {
+                          bootbox.alert("No hay buceos dentro del área seleccionada");
+                          return false;
+                      }
+                      var array_densidad = [];
+                      $.getJSON("../api/buceo_especie.php?function=getEspeciesByIdBuceo", {buceos: data.toString()}, function(data)
+                      {                     
+                          var arreglo = [];
+                          arreglo.push(['Especie', 'Frecuencia']);
+                          $(data).each(function(index,element){
+                              arreglo.push([element.id, element.count/total]);
+                              array_densidad.push(element.id);
+                          });
+
+                          datosGrafico = google.visualization.arrayToDataTable(arreglo);
+                          drawChart("buceos");
+                          $.getJSON("../api/buceo_especie.php?function=getDensidadByIdEspecie", {densidad: array_densidad.toString(), buceos: id_buceos.toString()}  , function(array_densidad,id_buceos)
+                          {
+
+                              var array_especies = [];
+                              array_especies.push(['Especie', 'Densidad']);
+                              $(array_densidad).each(function(index,element){
+
+                                  array_especies.push([element.id_especie, parseInt(element.abundancia)]);
+                              });
+
+                              datosDensidad = google.visualization.arrayToDataTable(array_especies);
+                              drawChart("densidad");
+
+                          });
+                      });
+                      break;
+                  case 2:
+                      console.log("Habemus paso 2");
+                      break;
+              }
+          }
+      });
+      
       function map_init() {
 
           var myLatLng = new google.maps.LatLng(-36.7390, -71.05749);
@@ -88,9 +147,17 @@
                       infowindow.open(map, marker);
 
                       $.getJSON("../api/buceos.php?function=getBuceoById",{"id": marker.get("id")}, function(data){
+                        
+                          var nombres = Object.keys(data);
+                          for(var x = 0, len = nombres.length; x < len; ++x){
+                              var nombre = nombres[x];
+                              if (data[nombre] === null)
+                                  data[nombre] = 'No registrado';
+                          }
+                        
                           var contentString = '<div id="content">'+
 
-                                              '<div id="bodyContent" style="width: 400px;">'+
+                                              '<div id="bodyContent">'+
 
                                               '<div class="panel panel-info">' +
                                               '<div class="panel-heading"><h4>Información de buceo</h4></div>'+
@@ -147,60 +214,7 @@
 
       //google.maps.event.addDomListener(window, 'load', map_init);
       map_init();
-      google.maps.event.trigger(map, "resize");
-      $('#rootwizard').bootstrapWizard(
-      {
-          onTabClick: function(tab, navigation, index) {
-              return false;
-          },
-          onNext: function(tab, navigation, index) {
-              switch(index) {
-                  case 1:
-                      console.log("Habemus paso 1");
-                      var data = [];
-                      var id_buceos = [];
-                      $(markers).each(function(index, marker){
-                          if (marker.getVisible()) {
-                              data.push( marker.get('id') );
-                              id_buceos.push(marker.get('id'));
-                          }
-                      });
-
-                      var total = data.length;
-                      var array_densidad = [];
-                      $.getJSON("../api/buceo_especie.php?function=getEspeciesByIdBuceo", {buceos: data.toString()}, function(data)
-                      {                     
-                          var arreglo = [];
-                          arreglo.push(['Especie', 'Frecuencia']);
-                          $(data).each(function(index,element){
-                              arreglo.push([element.id, element.count/total]);
-                              array_densidad.push(element.id);
-                          });
-
-                          datosGrafico = google.visualization.arrayToDataTable(arreglo);
-                          drawChart("buceos");
-                          $.getJSON("../api/buceo_especie.php?function=getDensidadByIdEspecie", {densidad: array_densidad.toString(), buceos: id_buceos.toString()}  , function(array_densidad,id_buceos)
-                          {
-
-                              var array_especies = [];
-                              array_especies.push(['Especie', 'Densidad']);
-                              $(array_densidad).each(function(index,element){
-
-                                  array_especies.push([element.id_especie, parseInt(element.abundancia)]);
-                              });
-
-                              datosDensidad = google.visualization.arrayToDataTable(array_especies);
-                              drawChart("densidad");
-
-                          });
-                      });
-                      break;
-                  case 2:
-                      console.log("Habemus paso 2");
-                      break;
-              }
-          }
-      });
       
+      return map;
     }; // ./SEARCH
 }());
