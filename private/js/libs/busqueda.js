@@ -117,16 +117,22 @@
               editable:true
             }
           });
-
+          var fechaIni = $("input[name='fechaInicio']").val();
+          var fechaFin = $("input[name='fechaFin']").val();
           google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
               $(markers).each(function(index, marker){
-
                   if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
-                    if($("input[name='fechaInicio']").val() < marker.fecha &&  $("input[name='fechaFin']").val() > marker.fecha){
+                    if(fechaIni ==='' ||  fechaFin ===''){
                       marker.setVisible(true);
+                    }else{
+                        if(fechaIni < marker.fecha &&  fechaFin > marker.fecha){
+                          marker.setVisible(true);
+                        }else {
+                          marker.setVisible(false);
+                        }
                     }
                   } else {
-                      marker.setVisible(false);
+                    marker.setVisible(false);
                   }
               });
               drawingManager.setOptions({
