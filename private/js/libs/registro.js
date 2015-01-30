@@ -137,12 +137,33 @@
                           $("form#buceo").bootstrapValidator(validaciones);
                         break;
                     case 2:
-                        console.log("Habemus paso 2");
+                        registrarEspecies();
                         break;
                 }
             }
         });
-      
+        function registrarEspecies(){
+            var $repeat = $('.repeat')
+              , $item = $repeat.find('.item')
+              , $remover = $item.find('.remover')
+              , $abunpres = $item.find('[name="presencia_ausencia"]')
+              , $abundancia = $item.find('[name="abundancia"]')
+              , $agregar = $('.agregar')
+            ;
+          
+            $abunpres.on('change',function(){
+                if( $(this).val() === "0" )
+                    $abundancia.prop('disabled', false);
+                else
+                    $abundancia.prop('disabled', true);
+            });
+            $remover.on('click', function(){
+                $(this).closest(".item").remove();
+            });
+            $agregar.on('click', function(){
+                $repeat.append($item.clone(true));
+            });
+        }
         function HomeControl(controlDiv, map) {
 
           // Set CSS styles for the DIV containing the control

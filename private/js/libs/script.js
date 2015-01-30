@@ -96,6 +96,7 @@ $(document).on("ready", function(){
         minChars: 1,
         serviceUrl:'api/especies.php?function=autocomplete',
         onSelect: function (suggestion) {
+            $("#especie-autocomplete").val('');
             $.getJSON("api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
               
                 var ficha = '<div class="row">'+

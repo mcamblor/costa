@@ -18,7 +18,7 @@
                 </div>
                 <div class="tab-pane" id="tab2">
 
-                    <form id="buceo">
+                    <form id="postBuceos">
 
                     <h3>Información General</h3>
                     <div class="form-group">
@@ -156,28 +156,46 @@
                 </div>
 
                 <div class="tab-pane" id="tab3">
-
+                  
                     <h3>Especies visualizadas</h3>
-                    <div class="row" id="item_especies">
-                        <div id="especie_1" class="form-group">
-                            <label for="select-especie" class="control-label col-xs-3">Especie</label>
-                            <div class="col-xs-6">
-                              <select id="1" class="form-control select-especie">
-                                  <option value="0" selected>Seleccione especie</option>
-                                  <optgroup label="Top 20">
-                                  </optgroup>
-                                  <optgroup label="Todos">
-                                  </optgroup>
-                              </select>
-                            </div>
-                            <div class="col-xs-2">
-                                <a id="especie_1" class="fancybox" href="#">Ver Ficha</a>
-                            </div>
-                            <div class="col-xs-1">
-                                <a href="#" class="eliminar_ficha">&times;</a>
+                    <form id="postBuceoEspecies" class="form-horizontal">
+                        <div class="row repeat">
+                        
+                            <div class="form-group item">
+                                <div class="col-xs-3">
+                                  <select class="form-control" name="especie">
+                                      <option value="0" selected>Seleccione especie</option>
+                                      <optgroup label="Top 20">
+                                      </optgroup>
+                                      <optgroup label="Todos">
+                                      </optgroup>
+                                  </select>
+                                </div>
+                                <div class="col-xs-1">
+                                  <select class="form-control" name="presencia_ausencia">
+                                    <option value="0">Presencia</option>
+                                    <option value="1">Ausencia</option>
+                                  </select>
+                                </div>
+                                <div class="col-xs-2">
+                                  <select class="form-control" name="abundancia" disabled>
+                                    <option value="1">Único</option>
+                                    <option value="2">Poco abundante</option>
+                                    <option value="3">Abundante</option>
+                                    <option value="4">Muy abundante</option>
+                                  </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <button type="button" class="btn btn-default">Ver Ficha</button>
+                                </div>
+                                <div class="col-xs-1">
+                                    <button type="button" class="btn btn-default remover">Quitar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+                    <button class="btn btn-default agregar">AGREGAR</button>
+                  
                 </div>
                 <ul class="pager wizard">
                     <li class="previous first" style="display:none;"><a href="#">Inicio</a></li>
