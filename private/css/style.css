@@ -149,3 +149,7 @@ max-width: none;
 #sidebar .panel-heading{
   border-bottom: 1px solid rgba(181, 89, 89, 0.1);
 }
+
+#filtro-fecha{
+	top: 10px;
+}
