@@ -117,9 +117,10 @@
               editable:true
             }
           });
-          var fechaIni = $("input[name='fechaInicio']").val();
-          var fechaFin = $("input[name='fechaFin']").val();
+          
           google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+            var fechaIni = $("input[name='fechaInicio']").val();
+            var fechaFin = $("input[name='fechaFin']").val();
               $(markers).each(function(index, marker){
                   if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
                     if(fechaIni ==='' ||  fechaFin ===''){
