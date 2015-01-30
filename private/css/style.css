@@ -1,18 +1,33 @@
 html, body {
     min-height: 100%;
+    height: 100%;
     margin: 0px;
     padding: 0px
 }
 
 
- body{
-	background: url(../img/Christian-Vizl-31.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: top center;
-	background-attachment: fixed;
-	padding-top: 70px;
- }
+body{
+    background: url(../img/Christian-Vizl-31.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    padding-top: 59px;
+}
+
+.app-content {
+    height: 100%;
+    position: relative;
+}
+  
+.navbar{
+    margin-bottom: 0 !important;
+}
+
+.container-fluid{
+    height: 100%;
+    position: relative;
+}
 
 .page-header{
 	border: solid 3px #2F71B3;
@@ -44,7 +59,7 @@ html, body {
 	margin-bottom: 4%;
 }
 #map-busqueda, #map {
-	height: 500px;
+	height: 100%;
 	width: 100%;
 	margin: 0px;
 	padding: 0px
@@ -110,4 +125,27 @@ max-width: none;
 #nuevo-usuario .form-group{
   margin-left: 0 !important;
   margin-right: 0 !important;
+}
+
+.controladores{
+    position:absolute;
+    overflow: visible;
+}
+#instrucciones{
+  top: 10px;
+  opacity: 0.9;
+}
+#btn-nuevo{
+  bottom:10px;
+}
+#sidebar{
+  top: 10px;
+}
+
+#sidebar .panel{
+  background-color: #E2E9FA;
+  box-shadow: 1px 3px 6px 4px #C0D2FF;
+}
+#sidebar .panel-heading{
+  border-bottom: 1px solid rgba(181, 89, 89, 0.1);
 }

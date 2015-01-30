@@ -1,0 +1,52 @@
+<div class="alert alert-success alert-dismissible" role="alert">
+  <strong>Información Geográfica</strong> <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+  <br>
+  <strong>Información General</strong> <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+</div>
+
+<form id="postBuceoEspecies" class="form-horizontal">
+    <div class="repeat">
+        <h4>Especies visualizadas</h4>
+      
+        <hr>
+      
+        <div class="form-group">
+        <div class="col-xs-4"><strong>Especie</strong></div>
+        <div class="col-xs-3"><strong>Abundancia/Presencia</strong></div>
+        <div class="col-xs-3"><strong>Abundancia</strong></div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-1"></div>
+        </div>
+
+        <div class="form-group item">
+            <div class="col-xs-4">
+              <select class="form-control" name="especie">
+              </select>
+            </div>
+            <div class="col-xs-3">
+              <select class="form-control" name="presencia_ausencia">
+                <option value="0">Presencia</option>
+                <option value="1">Ausencia</option>
+              </select>
+            </div>
+            <div class="col-xs-3">
+              <select class="form-control" name="abundancia">
+                <option value="0">No registrado</option>
+                <option value="1">Único</option>
+                <option value="2">Poco abundante</option>
+                <option value="3">Abundante</option>
+                <option value="4">Muy abundante</option>
+              </select>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span></button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default remover"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-default agregar"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    <hr>
+    <button type="submit" class="btn btn-info btn-block">Guardar</button>
+</form>

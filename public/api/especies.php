@@ -4,7 +4,7 @@ require_once("bd.php");
 
 if(isset($_GET['function'])){
 	switch ($_GET['function']) {
-	    case "getEspecies":
+	    case "get":
 	        echo getEspecies();
 	        break;
 	    case "getTop20":

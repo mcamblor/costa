@@ -2,7 +2,7 @@
 require_once("global.php");
 require_once("bd.php");
 
-$table = "habitat";
+$tableName = "habitat";
 
 if(isset($_GET['function'])){
 	switch ($_GET['function']) {
@@ -13,9 +13,10 @@ if(isset($_GET['function'])){
 }
 
 function get(){
+    global $tableName;
     $arrayData = array();
     $link = connect_bd();
-    $sql = "SELECT * FROM " + $table + " WHERE 1";
+    $sql = "SELECT * FROM ". $tableName." WHERE 1";
     $result = mysqli_query($link,$sql);
     if( mysqli_num_rows($result) > 0 ){
         while ($row = mysqli_fetch_assoc($result)){
