@@ -29,9 +29,9 @@ function postBuceoEspecie($idbuceo, $especies){
     foreach ($object as $iter) {
       $sql .= "(";
       $sql .= $idbuceo.",";
-      $sql .= $iter->especie.",";
-      $sql .= $iter->abundancia.",";
-      $sql .= $iter->presente;
+      $sql .= $iter['especie'].",";
+      $sql .= $iter['abundancia'].",";
+      $sql .= $iter['presente'];
       $sql .= "),";
     }
     $sql = trim($sql, ',');
@@ -45,7 +45,7 @@ function postBuceoEspecie($idbuceo, $especies){
         $error = "";
     }
     disconnect_bd($link);
-    return json_encode( array( 'valid' => $result,'error' => $error ) );
+    return json_encode( array( 'valid' => $result,'error' => $error,'consulta' =>$sql) );
 }
 
 

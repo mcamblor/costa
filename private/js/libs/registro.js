@@ -212,14 +212,22 @@
                       }
                     else{
                       ob.presente = 0;
-                      ob.abundancia=''
+                      ob.abundancia='NULL'
                     } 
                     objeto.push(ob);
                 }
                 $.post("api/buceo_especie.php", {function: "postBuceoEspecie", buceo: idBuceo, especies: JSON.stringify(objeto)}, function(data){
-                    dialog.modal('hide');
-                    bootbox.alert("Registro realizado con éxito");
-                });
+                    if (data.valid)
+                    {
+                        dialog.modal('hide');
+                        bootbox.alert("Buceo agregado con éxito");
+                    }
+                    else
+                    {
+                        dialog.modal('hide');
+                        bootbox.alert("No se ha podido realizar la operación");
+                    }
+                }, "json");
                 
             });
           
