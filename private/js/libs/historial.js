@@ -21,11 +21,6 @@
                         title: 'Longitud'
                     },
                     {
-                        data: 'localidad',
-                        class: 'text-center',
-                        title: 'Localidad'
-                    },
-                    {
                         data: 'fecha',
                         class: 'text-center',
                         title: 'Fecha'
@@ -53,12 +48,12 @@
                     {
                         data: 'profundidad_media',
                         class: 'text-center',
-                        title: 'Profundidad Media'
+                        title: 'Prof. Media'
                     },
                     {
                         data: 'profundidad_maxima',
                         class: 'text-center',
-                        title: 'Profundidad Máxima'
+                        title: 'Prof. Máxima'
                     },
                     {
                         data: 'visibilidad',

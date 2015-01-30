@@ -115,13 +115,15 @@
           , $btnContinuar = $('#btn-continuar')
           , $instruccion = $('#instruccion')
           , $formBuceos
+          , idBuceo
         ;
+        var dialog;
 
         $btnContinuar.on('click',function(){
             $sidebar.fadeOut();
             $instruccion.fadeOut();
             $.get('tpl/registro-buceo.html', function(data){
-                var dialog = bootbox.dialog({
+                  dialog = bootbox.dialog({
                     title: "Nuevo Buceo",
                     message: data
                 });
@@ -138,6 +140,7 @@
                     $.post( "api/buceos.php", { function: "post", buceo: JSON.stringify(formObject) }, function( data ) {
                         if (data.valid)
                         {
+                            idBuceo = data.id;
                             $('#contenido').load("tpl/registro-especies.html", registrarEspecies);
                         }
                         else
@@ -146,7 +149,7 @@
                             bootbox.alert("No se ha podido realizar la operación");
                         }
                     }, "json"); 
-              });
+                });
             });
         });
       
@@ -190,6 +193,36 @@
             $agregar.on('click', function(){
                 $repeat.append($item.clone(true));
             });
+          
+          
+            $('#postBuceoEspecies').on('submit', function(e){
+                e.preventDefault();
+                var formObject = $(this).serializeObject();
+                var x = formObject;
+                var objeto =[];
+                var j = 0;
+                for(var i = 0, len = x.especie.length; i<len; ++i )
+                {
+                    var ob ={};
+                    ob.especie =x.especie[i];
+                    if(x.presencia_ausencia[i] ==0){
+                        ob.presente =1;
+                        ob.abundancia = x.abundancia[j];
+                        j++;
+                      }
+                    else{
+                      ob.presente = 0;
+                      ob.abundancia=''
+                    } 
+                    objeto.push(ob);
+                }
+                $.post("api/buceo_especie.php", {function: "postBuceoEspecie", buceo: idBuceo, especies: JSON.stringify(objeto)}, function(data){
+                    dialog.modal('hide');
+                    bootbox.alert("Registro realizado con éxito");
+                });
+                
+            });
+          
         }
 
         function map_init() {

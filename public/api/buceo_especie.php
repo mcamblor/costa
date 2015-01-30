@@ -13,7 +13,42 @@ if(isset($_GET['function'])){
     }
 }
 
-                  
+if(isset($_POST['function'])){
+    switch ($_POST['function']) {
+        case "postBuceoEspecie":
+            echo postBuceoEspecie($_POST['buceo'], $_POST['especies']);
+            break;
+    }
+}
+
+function postBuceoEspecie($idbuceo, $especies){
+    $object = json_decode($especies, true);
+    $link = connect_bd();
+    $sql  = "INSERT INTO buceo_especie VALUES ";
+  
+    foreach ($object as $iter) {
+      $sql .= "(";
+      $sql .= $idbuceo.",";
+      $sql .= $iter->especie.",";
+      $sql .= $iter->abundancia.",";
+      $sql .= $iter->presente;
+      $sql .= "),";
+    }
+    $sql = trim($sql, ',');
+    $result = mysqli_query($link,$sql);
+    if (!$result)
+    {
+        $error = mysqli_error($link);
+    }
+    else
+    {
+        $error = "";
+    }
+    disconnect_bd($link);
+    return json_encode( array( 'valid' => $result,'error' => $error ) );
+}
+
+
 function getEspeciesByIdBuceo($ids){
     $especies = array();
     $link = connect_bd();
