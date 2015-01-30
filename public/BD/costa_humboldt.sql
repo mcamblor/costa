@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 05-01-2015 a las 12:59:57
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 30-01-2015 a las 20:42:57
+-- Versión del servidor: 5.5.16
+-- Versión de PHP: 5.5.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -43,16 +43,34 @@ CREATE TABLE IF NOT EXISTS `buceos` (
   `nombre_usuario` varchar(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_registro_buceo_usuario1_idx` (`nombre_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
 
 --
 -- Volcado de datos para la tabla `buceos`
 --
 
 INSERT INTO `buceos` (`id`, `latitud`, `longitud`, `localidad`, `fecha`, `tipo`, `temp_superficie`, `temp_fondo`, `tiempo`, `profundidad_media`, `profundidad_maxima`, `visibilidad`, `corriente`, `nombre_usuario`) VALUES
-(40, -42, -60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'develop'),
-(41, -41, -60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'develop'),
-(42, -41.5, -60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'develop');
+(40, -42, -60, 'Lorem Ipsum Chigua', '2015-01-28', 'Semi-Autónomo', 20, 10, NULL, 10, 10, '3 - 5 metros', 'Suave', 'develop'),
+(41, -41, -60, 'Lorea ipsum', '2015-01-21', 'Apnea', 15, 10, NULL, 10, 10, '20 - 30 metros', 'Fuerte', 'develop'),
+(42, -41.5, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(43, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(44, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(45, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(46, -41.2, -60, 'Chigua', '2014-12-09', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(47, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(48, -41.2, -60, 'Chigua', '2014-12-01', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(49, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(50, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(51, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(52, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(53, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(54, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(55, -41.2, -60, 'Chigua', '2015-01-05', 'Técnico', 10, 10, NULL, 10, 10, '20 - 30 metros', NULL, 'develop'),
+(56, -32.990235559651055, -67.6318359375, '', '2015-01-30', 'Autónomo deportivo', 10, 10, 10, 10, 10, 'Menos de 1 metro', 'Ninguna', 'develop'),
+(57, -33.13755119234615, -71.8505859375, '', '2015-01-30', 'Técnico', 10, 10, 19, 10, 10, 'Menos de 1 metro', 'Ninguna', 'develop'),
+(58, -29.036960648558257, -70.9716796875, '', '2015-01-30', 'Autónomo deportivo', 10, 10, 10, 10, 10, '1 - 3 metros', 'Ninguna', 'develop'),
+(59, -32.21280106801518, -69.1259765625, '', '2015-01-30', 'Semi-Autónomo', 10, 10, 10, 10, 10, 'Menos de 1 metro', 'Ninguna', 'develop'),
+(60, -32.58384932565661, -75.498046875, '', '2015-01-30', 'Semi-Autónomo', 10, 10, 10, 10, 10, 'Menos de 1 metro', 'Ninguna', 'develop');
 
 -- --------------------------------------------------------
 
@@ -84,7 +102,25 @@ INSERT INTO `buceo_especie` (`id_buceo`, `id_especie`, `abundancia`, `presente`)
 (41, 13, 'Muy abundante', 1),
 (42, 1, 'Poco abundante', 0),
 (42, 3, 'Único', 0),
-(42, 5, 'Poco abundante', 0);
+(42, 5, 'Poco abundante', 0),
+(43, 101, 'Poco abundante', 1),
+(44, 32, 'Poco abundante', 1),
+(45, 34, 'Abundante', 1),
+(46, 33, 'Poco abundante', 1),
+(47, 44, 'Abundante', 1),
+(48, 55, 'Poco abundante', 1),
+(49, 66, 'Abundante', 1),
+(50, 77, 'Abundante', 1),
+(51, 65, 'Abundante', 1),
+(52, 43, 'Poco abundante', 1),
+(53, 42, 'Muy abundante', 1),
+(54, 36, 'Abundante', 1),
+(55, 67, 'Muy abundante', 1),
+(56, 68, 'Abundante', 1),
+(57, 69, 'Poco abundante', 1),
+(58, 71, 'Poco abundante', 1),
+(59, 99, 'Poco abundante', 1),
+(60, 101, 'Abundante', 1);
 
 -- --------------------------------------------------------
 
@@ -93,12 +129,12 @@ INSERT INTO `buceo_especie` (`id_buceo`, `id_especie`, `abundancia`, `presente`)
 --
 
 CREATE TABLE IF NOT EXISTS `buceo_habitat` (
-  `habitat_idhabitat` int(11) NOT NULL AUTO_INCREMENT,
-  `registro_buceo_idregistro_buceo` int(11) NOT NULL,
-  PRIMARY KEY (`habitat_idhabitat`,`registro_buceo_idregistro_buceo`),
-  KEY `fk_buceo_habitat_habitat1_idx` (`habitat_idhabitat`),
-  KEY `fk_buceo_habitat_registro_buceo1_idx` (`registro_buceo_idregistro_buceo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `idhabitat` int(11) NOT NULL,
+  `idbuceo` int(11) NOT NULL,
+  PRIMARY KEY (`idhabitat`,`idbuceo`),
+  KEY `fk_buceo_habitat_habitat1_idx` (`idhabitat`),
+  KEY `fk_buceo_habitat_registro_buceo1_idx` (`idbuceo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -107,16 +143,16 @@ CREATE TABLE IF NOT EXISTS `buceo_habitat` (
 --
 
 CREATE TABLE IF NOT EXISTS `centro_buceo` (
-  `idcentro_buceo` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idcentro_buceo`)
+  `id` int(11) NOT NULL,
+  `data` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `centro_buceo`
 --
 
-INSERT INTO `centro_buceo` (`idcentro_buceo`, `nombre`) VALUES
+INSERT INTO `centro_buceo` (`id`, `data`) VALUES
 (1, 'ValpoSub'),
 (2, 'Otros');
 
@@ -181,7 +217,7 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (45, 'Bilagay', 'Cheilodactylus variegatus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Cheilodactylidae', 'Cheilodactylus', 278156, 'Desde Paita en Perú hasta bahía Metri en Chile (41º36’S, 72º43’W) (Pequeño & Vargas 2001).', 'Cuerpo oblongo, comprimido y de dorso algo elevado. Aleta pectoral entera con los 5 ó 6 radios inferiores engrosados y no ramificados, con sólo los extremos libres; una aleta dorsal hendida o muesqueada entre las porciones espinosas y blandas pero no separadas. Labios moderadamente gruesos. En la coloración resaltan  de 6 a 7 bandas verticales. Los rebordes y los vértices de las aletas caudal, anal, ventrales y pectorales, resaltan en ejemplares frescos por el vivo color rojo-anaranjado (Medina et al. 2003).', 'Forma pequeños cardúmenes en las inmediaciones de bosques de huiro con fondo rocoso, en esta ambiente obtiene una gran variedad de presas como moluscos, crustáceos, poliquetos y equinodermos, clasificándose como una especie carnívora (Moreno & Flores 2002).', 'Económicamente para el país no es importante ya que aún no aparece en las estadísticas pesqueras, debido a su regionalidad y al poco volumen de su captura, se encuentra rara vez en los mercados por su ocasional pesquería artesanal.', 'Temporada de desove aparentemente parcial en Chile entre Enero y Mayo, talla de primera madurez sexual 27 cm de longitud total para hembras (Data no publicada).', 'González J & F Balbontín. Estudio de desarrollo gonadal y talla media de madurez sexual en el Bilagay Cheilodactylus variegatus (Valenciennes, 1883) (Osteichthyes: Cheilodactylidae) del área de Valparaíso, (Data no publicado).\r\n\r\nMoreno M & H Flores. 2002. Contenido estomacal de Cheilodactylus variegatus Valenciennes 1833, Pinguipes chilensis Valenciennes 1833 y Prolatilus jugularis Valenciennes 1833 en la Bahía de la Herradura, Coquimbo, durante primavera del 2001. Gayana, Concepción 66(2): 213-217.\r\n\r\nMedina M, C Vega & M Araya. 2003. Guía de peces marinos de la zona norte de Chile. Mecesup Unap/001\r\nVargas L & G Pequeño. 2001. Hallazgo del bilagai (Cheilodactylus variegatus Valenciennes, 1833),  en la bahía Metri, Chile  (Osteichthyes: Cheilodactylidae) Investigaciones Marinas 29(2): 29-33.\r\n', 'img/especies/Bilagay.jpg'),
 (46, 'Blanquillo', 'Prolatilus jugularis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Pinguipedidae', 'Prolatilus', 282360, '', '', '', '', '', '', ''),
 (47, 'Bonito', 'Sarda chiliensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Scombridae', 'Sarda', 293729, '', '', '', '', '', '', ''),
-(48, 'Borrachilla', 'Scartichthys gigas', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Blenniidae', 'Scartichthys', 282674, '', '', '', '', '', '', ''),
+(48, 'Borrachilla', 'Scartichthys gigas', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Blenniidae', 'Scartichthys', 282674, '', '', '', '', '', '', 'img/especies/Borrachilla.jpg'),
 (49, 'Borracho verde', 'Scartichthys viridis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Blenniidae', 'Scartichthys', 282676, '', '', '', '', '', '', ''),
 (50, 'Breca', 'Cheilodactylus variegatus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Cheilodactylidae', 'Cheilodactylus', 278156, '', '', '', '', '', '', ''),
 (51, 'Breca de Juan Fernandez', 'Nemadactylus gayi', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Cheilodactylidae', 'Nemadactylus', 281652, '', '', '', '', '', '', ''),
@@ -191,9 +227,9 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (55, 'Caballa', 'Scomber japonicus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Scombridae', 'Scomber', 127022, '', '', '', '', '', '', ''),
 (56, 'Cabeza de acero', 'Oncorhynchus mykiss', 'Animalia', 'Chordata', 'Actinopterygii', 'Salmoniformes', 'Salmonidae', 'Oncorhynchus', 127185, '', '', '', '', '', '', ''),
 (57, 'Cabinza', 'Isacia conceptionis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Haemulidae', 'Isacia', 281184, '', '', '', '', '', '', ''),
-(58, 'Cabrilla', 'Sebastes capensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Scorpaeniformes', 'Sebastidae', 'Sebastes', 221446, '', '', '', '', '', '', ''),
+(58, 'Cabrilla', 'Sebastes capensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Scorpaeniformes', 'Sebastidae', 'Sebastes', 221446, '', '', '', '', '', '', 'img/especies/Cabrilla_comun.jpg'),
 (59, 'Cabrilla común', 'Paralabrax humeralis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Serranidae', 'Paralabrax', 282056, '', '', '', '', '', '', ''),
-(60, 'Cabrilla española', 'Sebastes capensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Scorpaeniformes', 'Sebastidae', 'Sebastes', 221446, '', '', '', '', '', '', ''),
+(60, 'Cabrilla española', 'Sebastes capensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Scorpaeniformes', 'Sebastidae', 'Sebastes', 221446, '', '', '', '', '', '', 'img/especies/Cabrilla_espanola.jpg'),
 (61, 'Cachurreta', 'Katsuwonus pelamis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Scombridae', 'Katsuwonus', 127018, '', '', '', '', '', '', ''),
 (62, 'Cacique', 'Congiopodus peruvianus', 'Animalia', 'Chordata', 'Actinopterygii', 'Scorpaeniformes', 'Congiopodidae', 'Congiopodus', 278357, '', '', '', '', '', '', ''),
 (63, 'Carmelita', 'Percilia gillissi', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Perciliidae ', 'Percilia', 0, '', '', '', '', '', '', ''),
@@ -202,7 +238,7 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (66, 'Carpa', 'Cyprinus carpio', 'Animalia', 'Chordata', 'Actinopterygii', 'Cypriniformes', 'Cyprinidae', 'Cyprinus', 154582, '', '', '', '', '', '', ''),
 (67, 'Carpín', 'Carassius carassius', 'Animalia', 'Chordata', 'Actinopterygii', 'Cypriniformes', 'Cyprinidae', 'Carassius', 154297, '', '', '', '', '', '', ''),
 (68, 'Castañeta', 'Nexilosus latifrons', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Pomacentridae', 'Nexilosus', 281746, '', '', '', '', '', '', ''),
-(69, 'Castañeta común', 'Chromis crusma', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Pomacentridae', 'Chromis', 273717, '', '', '', '', '', '', ''),
+(69, 'Castañeta común', 'Chromis crusma', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Pomacentridae', 'Chromis', 273717, '', '', '', '', '', '', 'img/especies/Castañeta.jpg'),
 (70, 'Cauque del Maule', 'Odontesthes mauleanum', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes', 'Atherinidae ', 'Odontesthes', 0, '', '', '', '', '', '', ''),
 (71, 'Cauque del Norte', 'Odontesthes brevianalis', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes', 'Atherinidae ', 'Odontesthes', 0, '', '', '', '', '', '', ''),
 (72, 'Pejerey de cola corta', 'Odontesthes brevianalis', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes', 'Atherinidae ', 'Odontesthes', 0, '', '', '', '', '', '', ''),
@@ -215,10 +251,10 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (79, 'Cojinoba del sur', 'Seriolella caerulea', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Centrolophidae', 'Seriolella', 282756, '', '', '', '', '', '', ''),
 (80, 'Cojinoba moteada', 'Seriolella punctata', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Centrolophidae', 'Seriolella', 282758, '', '', '', '', '', '', ''),
 (81, 'Cojinova', 'Seriolella porosa', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Centrolophidae', 'Seriolella', 282757, '', '', '', '', '', '', ''),
-(82, 'Congrio colorado', 'Genypterus chilensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Ophidiiformes', 'Ophidiidae', 'Genypterus', 278704, '', '', '', '', '', '', ''),
+(82, 'Congrio colorado', 'Genypterus chilensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Ophidiiformes', 'Ophidiidae', 'Genypterus', 278704, '', '', '', '', '', '', 'img/especies/Congrio_colorado.jpg'),
 (83, 'Congrio dorado', 'Genypterus blacodes', 'Animalia', 'Chordata', 'Actinopterygii', 'Ophidiiformes', 'Ophidiidae', 'Genypterus', 278702, '', '', '', '', '', '', ''),
 (84, 'Congrio negro', 'Genypterus maculatus', 'Animalia', 'Chordata', 'Actinopterygii', 'Ophidiiformes', 'Ophidiidae', 'Genypterus', 278705, '', '', '', '', '', '', ''),
-(85, 'Corvina', 'Cilus gilberti', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Sciaenidae', 'Cilus', 280187, '', '', '', '', '', '', ''),
+(85, 'Corvina', 'Cilus gilberti', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Sciaenidae', 'Cilus', 280187, '', '', '', '', '', '', 'img/especies/Corvina.jpg'),
 (86, 'Corvina rubia', 'Micropogonias furnieri', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Sciaenidae', 'Micropogonias', 275307, '', '', '', '', '', '', ''),
 (87, 'Corvinilla', 'Micropogonias furnieri', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Sciaenidae', 'Micropogonias', 275307, '', '', '', '', '', '', ''),
 (88, 'Dorado', 'Coryphaena hippurus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Coryphaenidae', 'Coryphaena', 126846, '', '', '', '', '', '', ''),
@@ -226,14 +262,14 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (90, 'Draco rayado', 'Champsocephalus gunnari', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Channichthyidae', 'Champsocephalus', 234797, '', '', '', '', '', '', ''),
 (91, 'Hacha', 'Kyphosus analogus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Kyphosidae', 'Kyphosus', 273519, '', '', '', '', '', '', ''),
 (92, 'Huaiquil', 'Micropogonias furnieri', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Sciaenidae', 'Micropogonias', 275307, '', '', '', '', '', '', ''),
-(93, 'Jerguilla', 'Aplodactylus punctatus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Aplodactylidae', 'Aplodactylus', 279659, '', '', '', '', '', '', ''),
-(94, 'Jurel', 'Trachurus murphyi', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Carangidae', 'Trachurus', 273303, '', '', '', '', '', '', ''),
+(93, 'Jerguilla', 'Aplodactylus punctatus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Aplodactylidae', 'Aplodactylus', 279659, '', '', '', '', '', '', 'img/especies/Jerguilla.jpg'),
+(94, 'Jurel', 'Trachurus murphyi', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Carangidae', 'Trachurus', 273303, '', '', '', '', '', '', 'img/especies/Jurel.jpg'),
 (95, 'Lamprea chilena', 'Mordacia lapicida', 'Animalia', 'Chordata', 'Cephalaspidomorphi', 'Petromyzontiformes', 'Mordaciidae', 'Mordacia', 281594, '', '', '', '', '', '', ''),
 (96, 'Lamprea de bolsa', 'Geotria australis', 'Animalia', 'Chordata', 'Cephalaspidomorphi', 'Petromyzontiformes', 'Geotriidae', 'Geotria', 234686, '', '', '', '', '', '', ''),
 (97, 'Lenguado chileno', 'Paralichthys adspersus', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Paralichthyidae', 'Paralichthys', 275806, '', '', '', '', '', '', ''),
 (98, 'Lenguado de la Patagonia', 'Paralichthys patagonicus', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Paralichthyidae', 'Paralichthys', 275818, '', '', '', '', '', '', ''),
-(99, 'Lenguado de ojos chicos', 'Paralichthys microps', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Paralichthyidae', 'Paralichthys', 275815, '', '', '', '', '', '', ''),
-(100, 'Lenguado de ojos grandes', 'Hippoglossina macrops', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Paralichthyidae', 'Hippoglossina', 275824, '', '', '', '', '', '', ''),
+(99, 'Lenguado de ojos chicos', 'Paralichthys microps', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Paralichthyidae', 'Paralichthys', 275815, '', '', '', '', '', '', 'img/especies/Lenguado_ojoschicos.gif'),
+(100, 'Lenguado de ojos grandes', 'Hippoglossina macrops', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Paralichthyidae', 'Hippoglossina', 275824, '', '', '', '', '', '', 'img/especies/Lenguado_ojosgrandes.jpg'),
 (101, 'Lenguado de Patagonia', 'Paralichthys patagonicus', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Paralichthyidae', 'Paralichthys', 275818, '', '', '', '', '', '', ''),
 (102, 'Lisa', 'Mugil cephalus', 'Animalia', 'Chordata', 'Actinopterygii', 'Mugiliformes', 'Mugilidae', 'Mugil', 126983, '', '', '', '', '', '', ''),
 (103, 'Machete', 'Brevoortia maculata', 'Animalia', 'Chordata', 'Actinopterygii', 'Clupeiformes', 'Clupeidae', 'Brevoortia', 308313, '', '', '', '', '', '', ''),
@@ -285,7 +321,7 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (149, 'Pejerrey chileno', 'Basilichthys australis', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes ', 'Atherinopsidae', 'Basilichthys', 0, '', '', '', '', '', '', ''),
 (150, 'Pejerrey de mar', 'Odontesthes regia', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes', 'Atherinidae', 'Odontesthes', 281830, '', '', '', '', '', '', ''),
 (151, 'Pejerrey del norte chico', 'Basilichthys microlepidotus', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes ', 'Atherinopsidae', 'Basilichthys', 0, '', '', '', '', '', '', ''),
-(152, 'Pejesapo', 'Sicyases sanguineus', 'Animalia', 'Chordata', 'Actinopterygii', 'Gobiesociformes', 'Gobiesocidae', 'Sicyases', 282773, '', '', '', '', '', '', ''),
+(152, 'Pejesapo', 'Sicyases sanguineus', 'Animalia', 'Chordata', 'Actinopterygii', 'Gobiesociformes', 'Gobiesocidae', 'Sicyases', 282773, '', '', '', '', '', '', 'img/especies/Pejesapo_comun.jpg'),
 (153, 'Peje-sapo veteado', 'Gobiesox marmoratus', 'Animalia', 'Chordata', 'Actinopterygii', 'Gobiesociformes', 'Gobiesocidae', 'Gobiesox', 275673, '', '', '', '', '', '', ''),
 (154, 'Pejezorro', 'Alopias vulpinus', 'Animalia', 'Chordata', 'Elasmobranchii', 'Lamniformes', 'Alopiidae', 'Alopias', 105836, '', '', '', '', '', '', ''),
 (155, 'Peladilla', 'Brachygalaxias bullocki', 'Animalia', 'Chordata', 'Actinopterygii', 'Osmeriformes', 'Galaxiidae', 'Brachygalaxias', 0, '', '', '', '', '', '', ''),
@@ -309,7 +345,7 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (173, 'Róbalo', 'Eleginops maclovinus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Eleginopsidae', 'Eleginops', 280634, '', '', '', '', '', '', ''),
 (174, 'Róbalo patagónico', 'Eleginops maclovinus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Eleginopsidae', 'Eleginops', 280634, '', '', '', '', '', '', ''),
 (175, 'Rococo', 'Paralonchurus peruanus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Sciaenidae', 'Paralonchurus', 282066, '', '', '', '', '', '', ''),
-(176, 'Rollizo', 'Pinguipes chilensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Pinguipedidae', 'Pinguipes', 279407, '', '', '', '', '', '', ''),
+(176, 'Rollizo', 'Pinguipes chilensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Pinguipedidae', 'Pinguipes', 279407, '', '', '', '', '', '', 'img/especies/Rollizo.jpg'),
 (177, 'Roncacho', 'Sciaena deliciosa', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Sciaenidae', 'Sciaena', 273790, '', '', '', '', '', '', ''),
 (178, 'Salmón del Atlántico', 'Salmo salar', 'Animalia', 'Chordata', 'Actinopterygii', 'Salmoniformes', 'Salmonidae', 'Salmo', 127186, '', '', '', '', '', '', ''),
 (179, 'Salmón plateado', 'Oncorhynchus kisutch', 'Animalia', 'Chordata', 'Actinopterygii', 'Salmoniformes', 'Salmonidae', 'Oncorhynchus', 127184, '', '', '', '', '', '', ''),
@@ -334,7 +370,7 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (198, 'Tomollo de tres aletas', 'Tripterygion chilensis', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Tripterygiidae', 'Tripterygion', 305431, '', '', '', '', '', '', ''),
 (199, 'Tomoyo', 'Labrisomus philippii', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Labrisomidae', 'Labrisomus', 281261, '', '', '', '', '', '', ''),
 (200, 'Toremo', 'Seriola lalandi', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Carangidae', 'Seriola', 218436, '', '', '', '', '', '', ''),
-(201, 'Torito', 'Hypsoblennius sordidus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Blenniidae', 'Hypsoblennius', 276332, '', '', '', '', '', '', ''),
+(201, 'Torito', 'Hypsoblennius sordidus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Blenniidae', 'Hypsoblennius', 276332, '', '', '', '', '', '', 'img/especies/Torito.jpg'),
 (202, 'Torito de los canales', 'Cottoperca gobio', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Bovichtidae', 'Cottoperca', 280409, '', '', '', '', '', '', ''),
 (203, 'Tritre', 'Ethmidium maculatum', 'Animalia', 'Chordata', 'Actinopterygii', 'Clupeiformes', 'Clupeidae', 'Ethmidium', 280726, '', '', '', '', '', '', ''),
 (204, 'Trucha arcoiris', 'Oncorhynchus mykiss', 'Animalia', 'Chordata', 'Actinopterygii', 'Salmoniformes', 'Salmonidae', 'Oncorhynchus', 127185, '', '', '', '', '', '', ''),
@@ -344,10 +380,10 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 (208, 'Trucha negra', 'Percichthys melanops', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Percichthyidae ', 'Percichthys', 0, '', '', '', '', '', '', ''),
 (209, 'Turbot', 'Scophthalmus maximus', 'Animalia', 'Chordata', 'Actinopterygii', 'Pleuronectiformes', 'Scophthalmidae', 'Scophthalmus', 127149, '', '', '', '', '', '', ''),
 (210, 'Vidriola', 'Seriola lalandi', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Carangidae', 'Seriola', 218436, '', '', '', '', '', '', ''),
-(211, 'Vieja', 'Graus nigra', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Kyphosidae', 'Graus', 280941, '', '', '', '', '', '', ''),
+(211, 'Vieja', 'Graus nigra', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Kyphosidae', 'Graus', 280941, '', '', '', '', '', '', 'img/especies/Vieja.jpg'),
 (212, 'Vieja colorada', 'Acanthistius pictus', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Serranidae', 'Acanthistius', 278727, '', '', '', '', '', '', ''),
 (213, 'Vieja, Mulata', 'Graus nigra', 'Animalia', 'Chordata', 'Actinopterygii', 'Perciformes', 'Kyphosidae', 'Graus', 280941, '', '', '', '', '', '', ''),
-(214, '', 'Notocheirus hubbsi', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes', 'Notocheiridae', 'Notocheirus', 281775, '', '', '', '', '', '', '');
+(214, '', 'Notocheirus hubbsi', 'Animalia', 'Chordata', 'Actinopterygii', 'Atheriniformes', 'Notocheiridae', 'Notocheirus', 281775, '', '', '', '', '', '', 'img/especies/Vieja.jpg');
 
 -- --------------------------------------------------------
 
@@ -356,17 +392,17 @@ INSERT INTO `especies` (`id`, `nombre_comun`, `nombre_cientifico`, `kingdom`, `p
 --
 
 CREATE TABLE IF NOT EXISTS `habitat` (
-  `idhabitat` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` varchar(45) DEFAULT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`idhabitat`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `habitat`
 --
 
-INSERT INTO `habitat` (`idhabitat`, `nombre`, `descripcion`) VALUES
+INSERT INTO `habitat` (`id`, `data`, `descripcion`) VALUES
 (1, 'Bolones / Roca', ' Zona con dominancia de rocas de mediano a gran tamaño sobrepuestas en el fondo marino.'),
 (2, 'Fondo blando', ' Zondo marino dominado por material arenoso, fango o limo.'),
 (3, 'Pared rocosa', ' Pared vertical con caida de mas de 7 metros de altura.'),
@@ -383,20 +419,20 @@ INSERT INTO `habitat` (`idhabitat`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `region`
+-- Estructura de tabla para la tabla `regiones`
 --
 
-CREATE TABLE IF NOT EXISTS `region` (
-  `idregion` int(11) NOT NULL,
-  `nombre` varchar(46) DEFAULT NULL,
-  PRIMARY KEY (`idregion`)
+CREATE TABLE IF NOT EXISTS `regiones` (
+  `id` int(11) NOT NULL,
+  `data` varchar(46) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `region`
+-- Volcado de datos para la tabla `regiones`
 --
 
-INSERT INTO `region` (`idregion`, `nombre`) VALUES
+INSERT INTO `regiones` (`id`, `data`) VALUES
 (1, 'Arica y Parinacota\r'),
 (2, 'Tarapacá\r'),
 (3, 'Antofagasta\r'),
@@ -427,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `genero` enum('Masculino','Femenino') DEFAULT NULL,
   `nombre_usuario` varchar(11) NOT NULL DEFAULT '',
   `email` varchar(45) NOT NULL,
-  `pass` varchar(8) NOT NULL,
+  `pass` varchar(45) NOT NULL,
   `anios_buceo` int(11) DEFAULT NULL,
   `hrs_buceo` enum('Menos de 10 horas','11 - 30 horas','31 - 60 horas','61 - 100 horas','101 - 300 horas','300 + horas') DEFAULT NULL,
   `ciudad` varchar(45) DEFAULT NULL,
@@ -445,7 +481,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`nombre`, `apellido_pat`, `apellido_mat`, `fecha_nac`, `genero`, `nombre_usuario`, `email`, `pass`, `anios_buceo`, `hrs_buceo`, `ciudad`, `educacion`, `experiencia`, `region`, `centro_buceo`) VALUES
-('', NULL, NULL, NULL, NULL, 'develop', 'develop', 'develop', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('laskdjl', 'jlaksd', 'jkjalsd', '0000-00-00', 'Masculino', 'alsdkj', 'asldk@alsd.cl', '59742fa4e6291f354bb2004aa8ab42d2', 0, 'Menos de 10 horas', '', 'Básica', 'Novato', 1, 1),
+('kaslkd', 'ljdalksjk', 'jlaksdj', '0000-00-00', 'Masculino', 'asdjlk', 'laskdjl@lkasjd.cl', '01f7c88fafaa5fcdcf58ec48a183eb06', 0, 'Menos de 10 horas', '', 'Básica', 'Novato', 1, 1),
+('', NULL, NULL, NULL, NULL, 'develop', 'develop', 'a19ea622182c63ddc19bb22cde982b82', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('jldasdjlk', 'jdlkasjd', 'daksdj', '0000-00-00', 'Masculino', 'laksdj', 'ljalskdj@alksjd.cl', 'd273d776eef481e675aa9f31d04a8f63', 0, 'Menos de 10 horas', '', 'Básica', 'Novato', 1, 1),
+('jjasdj', 'jdaksjdk', 'jdkjaksd', '0000-00-00', 'Masculino', 'lkasdl', 'kjlasjdl@aksld.cl', '6610ec1efcdf40b6dbffe20b50bff02b', 0, 'Menos de 10 horas', '', 'Básica', 'Novato', 1, 1),
+('prod', NULL, NULL, NULL, NULL, 'prod', 'prod@prod.cl', 'd6e4a9b6646c62fc48baa6dd6150d1f7', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('test', 'test', 'test', '2015-01-29', 'Masculino', 'test', 'test', '098f6bcd4621d373cade4e832627b4f6', 2, '11 - 30 horas', 'test', 'Básica', 'Novato', 1, 2);
 
 --
 -- Restricciones para tablas volcadas
@@ -468,14 +510,15 @@ ALTER TABLE `buceo_especie`
 -- Filtros para la tabla `buceo_habitat`
 --
 ALTER TABLE `buceo_habitat`
-  ADD CONSTRAINT `buceo_habitat_ibfk_1` FOREIGN KEY (`habitat_idhabitat`) REFERENCES `buceo_habitat` (`habitat_idhabitat`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `buceo_habitat_ibfk_2` FOREIGN KEY (`idbuceo`) REFERENCES `buceos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `buceo_habitat_ibfk_1` FOREIGN KEY (`idhabitat`) REFERENCES `habitat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_usuario_centro_buceo1` FOREIGN KEY (`centro_buceo`) REFERENCES `centro_buceo` (`idcentro_buceo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_region1` FOREIGN KEY (`region`) REFERENCES `region` (`idregion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`centro_buceo`) REFERENCES `centro_buceo` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`region`) REFERENCES `regiones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

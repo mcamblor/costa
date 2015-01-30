@@ -81,7 +81,7 @@ function postBuceo($buceo,$nombre_usuario){
     $object = json_decode($buceo, true);
     $link = connect_bd();
     $sql  = "INSERT INTO buceos VALUES (";
-    $sql .= "'',"; //id
+    $sql .= "NULL,"; //id
     $sql .= "'".$object['latitud']."',";
     $sql .= "'".$object['longitud']."',";
     $sql .= "'',"; //Localidad
