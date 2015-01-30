@@ -2,6 +2,8 @@
 require_once("global.php");
 require_once("bd.php");
 
+session_start();
+
 if(isset($_GET['function'])){
 	switch ($_GET['function']) {
 	    case "getBuceos":
@@ -11,8 +13,16 @@ if(isset($_GET['function'])){
 	        echo getBuceoById($_GET['id']);
 	        break;
         case "getHistorialByIdUsuario":
-            echo getHistorialByIdUsuario($_GET['nombre_usuario']);
+            echo getHistorialByIdUsuario($_SESSION["username"]);
             break;
+	}
+}
+
+if(isset($_POST['function'])){
+	switch ($_POST['function']) {
+	    case "post":
+	        echo postBuceo($_POST['buceo'], $_SESSION["username"]);
+	        break;
 	}
 }
 
@@ -65,5 +75,38 @@ function getHistorialByIdUsuario($nombre_usuario){
     $response = new stdClass();
     $response->data = $dataArray;
     return json_encode($response);
+}
+
+function postBuceo($buceo,$nombre_usuario){
+    $object = json_decode($buceo, true);
+    $link = connect_bd();
+    $sql  = "INSERT INTO buceos VALUES (";
+    $sql .= "'',"; //id
+    $sql .= "'".$object['latitud']."',";
+    $sql .= "'".$object['longitud']."',";
+    $sql .= "'',"; //Localidad
+    $sql .= "'".$object['fecha']."',";
+    $sql .= "'".$object['tipo']."',";
+    $sql .= "'".$object['temp_superficie']."',";
+    $sql .= "'".$object['temp_fondo']."',";
+    $sql .= "'".$object['tiempo']."',";
+    $sql .= "'".$object['prof_media']."',";
+    $sql .= "'".$object['prof_maxima']."',";
+    $sql .= "'".$object['visibilidad']."',";
+    $sql .= "'".$object['corriente']."',";
+    $sql .= "'".$nombre_usuario."'";
+    $sql .= ")";
+    $result = mysqli_query($link,$sql);
+    if (!$result){
+        $error = mysqli_error($link);
+        $id = -1;
+    }
+    else
+    {
+        $error = "";
+        $id = mysqli_insert_id($link);
+    }
+    disconnect_bd($link);
+    return json_encode( array( 'valid' => $result, 'id' => $id,'error' => $error ) );
 }
 ?>

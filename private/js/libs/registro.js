@@ -10,7 +10,6 @@
 
         validaciones =
         {
-            submitButtons: 'a.next',
             fields: {
               fecha: {
                 trigger:'blur',
@@ -67,10 +66,10 @@
                 trigger:'blur',
                 validators: {
                   notEmpty: {
-                    message: 'Temperatura es un campo obligatorio.'
+                    message: 'Temperatura de superficie es un campo obligatorio.'
                   },
                   numeric: {
-                    message: 'Temperatura es un campo numérico'
+                    message: 'Temperatura de superficie es un campo numérico'
                   }
                 }
               },
@@ -78,10 +77,10 @@
                 trigger:'blur',
                 validators: {
                   notEmpty: {
-                    message: 'Temperatura es un campo obligatorio.'
+                    message: 'Temperatura de fondo es un campo obligatorio.'
                   },
                   numeric: {
-                    message: 'Temperatura es un campo numérico'
+                    message: 'Temperatura de fondo es un campo numérico'
                   }
                 }
               },
@@ -89,10 +88,10 @@
                 trigger:'blur',
                 validators: {
                   notEmpty: {
-                    message: 'Profundidad es un campo obligatorio.'
+                    message: 'Profundidad Media es un campo obligatorio.'
                   },
                   numeric: {
-                    message: 'Profundidad es un campo numérico'
+                    message: 'Profundidad Media es un campo numérico'
                   }
                 }
               },
@@ -100,16 +99,57 @@
                 trigger:'blur',
                 validators: {
                   notEmpty: {
-                    message: 'Profundidad es un campo obligatorio.'
+                    message: 'Profundidad Máxima es un campo obligatorio.'
                   },
                   numeric: {
-                    message: 'Profundidad es un campo numérico'
+                    message: 'Profundidad Máxima es un campo numérico'
                   }
                 }
               }
             }
         }; //./ Validaciones
-        
+      
+        var $sidebar = $('#sidebar')
+          , $latitud = $('#latitud')
+          , $longitud = $('#longitud')
+          , $btnContinuar = $('#btn-continuar')
+          , $instruccion = $('#instruccion')
+          , $formBuceos
+        ;
+
+        $btnContinuar.on('click',function(){
+            $sidebar.fadeOut();
+            $instruccion.fadeOut();
+            $.get('tpl/registro-buceo.html', function(data){
+                var dialog = bootbox.dialog({
+                    title: "Nuevo Buceo",
+                    message: data
+                });
+                $formBuceos = $('form#buceos');
+                completarSelect('habitat');
+                $formBuceos.bootstrapValidator(validaciones)              
+                .on('success.form.bv', function(e) {
+                    e.preventDefault();
+                    var $form = $(e.target);
+                    var bv = $form.data('bootstrapValidator');
+                    var formObject = $form.serializeObject();
+                    formObject.latitud = $latitud.text();
+                    formObject.longitud = $longitud.text();
+                    $.post( "api/buceos.php", { function: "post", buceo: JSON.stringify(formObject) }, function( data ) {
+                        if (data.valid)
+                        {
+                            $('#contenido').load("tpl/registro-especies.html", registrarEspecies);
+                        }
+                        else
+                        {
+                            dialog.modal('hide');
+                            bootbox.alert("No se ha podido realizar la operación");
+                        }
+                    }, "json"); 
+              });
+            });
+        });
+      
         function completarSelect(campo){
             $.getJSON("api/"+campo+".php?function=get",function(data){
                 var options = "";
@@ -120,42 +160,29 @@
             });
         }
       
-        $('#rootwizard').bootstrapWizard(
-        {
-            onTabClick: function(tab, navigation, index) {
-                return false;
-            }
-          , onNext: function(tab, navigation, index) {
-                switch(index) {
-                    case 1:
-                        if (typeof marcador === "undefined") {
-                            bootbox.alert("Debe seleccionar un punto en el mapa!");
-                            return false;
-                        }
-                        else
-                          completarSelect("habitat");
-                          $("form#buceo").bootstrapValidator(validaciones);
-                        break;
-                    case 2:
-                        registrarEspecies();
-                        break;
-                }
-            }
-        });
         function registrarEspecies(){
             var $repeat = $('.repeat')
               , $item = $repeat.find('.item')
               , $remover = $item.find('.remover')
               , $abunpres = $item.find('[name="presencia_ausencia"]')
               , $abundancia = $item.find('[name="abundancia"]')
+              , $especie = $item.find('[name="especie"]')
               , $agregar = $('.agregar')
             ;
           
+            $.getJSON("api/especies.php?function=get",function(data){
+                var options = "";
+                for (var i = 0, len = data.length; i<len; ++i){
+                    options +=  "<option value='" + data[i].id + "'>" + data[i].nombre_comun + "</option>";
+                }
+                $("[name='especie']").html(options);
+            });
+            
             $abunpres.on('change',function(){
                 if( $(this).val() === "0" )
-                    $abundancia.prop('disabled', false);
+                    $(this).closest(".item").find('[name="abundancia"]').prop('disabled', false);
                 else
-                    $abundancia.prop('disabled', true);
+                    $(this).closest(".item").find('[name="abundancia"]').prop('disabled', true);
             });
             $remover.on('click', function(){
                 $(this).closest(".item").remove();
@@ -163,41 +190,6 @@
             $agregar.on('click', function(){
                 $repeat.append($item.clone(true));
             });
-        }
-        function HomeControl(controlDiv, map) {
-
-          // Set CSS styles for the DIV containing the control
-          // Setting padding to 5 px will offset the control
-          // from the edge of the map.
-          controlDiv.style.padding = '5px';
-
-          // Set CSS for the control border.
-          var controlUI = document.createElement('div');
-          controlUI.style.backgroundColor = 'white';
-          controlUI.style.opacity = '0.7';
-          controlUI.style.borderStyle = 'solid';
-          controlUI.style.borderRadius = '5px';
-          controlUI.style.borderWidth = '1px';
-          controlUI.style.borderColor= 'white';
-          controlUI.style.cursor = 'pointer';
-          controlUI.style.textAlign = 'center';
-          controlUI.title = 'Click to set the map to Home';
-          controlDiv.appendChild(controlUI);
-
-          // Set CSS for the control interior.
-          var controlText = document.createElement('div');
-          controlText.style.fontFamily = 'Arial,sans-serif';
-          controlText.style.fontSize = '12px';
-          //controlText.style.paddingLeft = '4px';
-          //controlText.style.paddingRight = '4px';
-          //controlText.innerHTML = '<strong>Agregar posición</strong>';
-          controlText.innerHTML = '<input type="text" placeholder="Filtrar especie">';
-          controlUI.appendChild(controlText);
-
-          // Setup the click event listeners: simply set the map to Chicago.
-          google.maps.event.addDomListener(controlUI, 'click', function() {
-            map.setCenter(-60,-40)
-          });
         }
 
         function map_init() {
@@ -213,7 +205,7 @@
 
             var drawingManager = new google.maps.drawing.DrawingManager({
               drawingMode: google.maps.drawing.OverlayType.MARKER,
-              drawingControl: true,
+              drawingControl: false,
               drawingControlOptions: {
                 position: google.maps.ControlPosition.TOP_CENTER,
                 drawingModes: [google.maps.drawing.OverlayType.MARKER]
@@ -226,10 +218,15 @@
               }
             });
             google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
-                $('#latitud').val(marker.position.lat());
-                $('#longitud').val(marker.position.lng());
+                $instruccion.html("<strong>Muy bien,</strong> también puedes arrastrar la marca en caso de que haya sido insertada en la posición incorrecta.");
+                $latitud.text(marker.position.lat());
+                $longitud.text(marker.position.lng());
+                $sidebar.fadeIn();
                 marcador = marker;
-                google.maps.event.addListener(marcador, 'drag', function() { this.setTitle(this.getPosition().toString()); } );
+                google.maps.event.addListener(marcador, 'drag', function() { 
+                    $latitud.text(this.position.lat());
+                    $longitud.text(this.position.lng());
+                });
                 this.setDrawingMode(null);
                 this.setMap(null);
             });
@@ -237,11 +234,6 @@
             
             drawingManager.setMap(map);
 
-            var homeControlDiv = document.createElement('div');
-            var homeControl = new HomeControl(homeControlDiv, map);
-
-            homeControlDiv.index = 1;
-            map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(homeControlDiv);
         }
 
         //google.maps.event.addDomListener(window, 'load', map_init);
