@@ -153,3 +153,8 @@ max-width: none;
 #filtro-fecha{
 	top: 10px;
 }
+
+.btn.centering{
+	display:block;
+	margin: 0 auto;
+}

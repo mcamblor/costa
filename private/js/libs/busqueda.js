@@ -2,7 +2,9 @@
     'use strict';
 
     $.fn.Busqueda = function(){
-      
+      document.getElementById('fechaInicio').disabled = true;
+      document.getElementById('fechaFin').disabled = true;
+      document.getElementById('especie-busqueda-autocomplete').disabled = true;
       google.load("visualization", "1", {packages:["corechart"], callback: function() {}});
       google.setOnLoadCallback(drawChart);
       var chartBuceos;
@@ -13,8 +15,13 @@
       function drawChart(tipo) {
 
           options = {
-            title: 'Especies visualizadas',
-            vAxis: {title: 'Especies',  titleTextStyle: {color: 'red'}}
+            height: 600,
+            width: 700,
+            title: 'Frecuencia de especies visualizadas',
+            vAxis: { textStyle: {fontName: 'arial', fontSize: 10} },
+            //chartArea: {left:100, width: 700} ,
+            //vAxis: {textPosition : 'in',fontSize: 6,},
+            hAxis: {textStyle: {fontName: 'arial', fontSize: 10}},
           };
 
           chartBuceos = new google.visualization.BarChart(document.getElementById('chartVisualizaciones_div'));
@@ -26,14 +33,64 @@
 
           if(tipo = "densidad"){
             options = {
-              title: 'Especies visualizadas',
-              vAxis: {title: 'Especies',  titleTextStyle: {color: 'red'}},
-              hAxis: { ticks: [{v:0, f:''},{v:1, f:'Único'}, {v:2, f:'Poco Abundante'}, {v:3, f:'Abundante'}, {v:4, f:'Muy Abundate'}] }
+              height: 600,
+              width: 700,
+              title: 'Densidad de especies visualizadas',
+              vAxis: { textStyle: {fontName: 'arial', fontSize: 10} },
+              //chartArea: {left:100, width: 700} ,
+              //vAxis: {textPosition : 'in',fontSize: 6,},
+              //vAxis: {title: 'Especies',  titleTextStyle: {color: 'red'}},
+              hAxis: { ticks: [{v:0, f:''},{v:1, f:'Único'}, {v:2, f:'Poco Abundante'}, {v:3, f:'Abundante'}, {v:4, f:'Muy Abundate'}],textStyle: {fontName: 'arial', fontSize: 10} }
             };
              cartDensidad.draw(datosDensidad, options);
           }
 
       }
+
+      //switch para filtros
+      $('.BSswitch').bootstrapSwitch('state', false);
+
+      //Filtro de fecha
+      $('input[name="filtro-fecha"]').on('switchChange.bootstrapSwitch', function(event, state) {
+          if (state) {
+            document.getElementById('fechaInicio').disabled = false;
+            document.getElementById('fechaFin').disabled = false;
+            $('#filtro-especies').bootstrapSwitch('state',false);
+          } else{
+            document.getElementById('fechaInicio').disabled = true;
+            document.getElementById('fechaFin').disabled = true;
+          };
+      });
+
+      $('input[name="filtro-especies"]').on('switchChange.bootstrapSwitch', function(event, state) {
+          if (state) {
+            document.getElementById('especie-busqueda-autocomplete').disabled = false;
+             $('#filtro-fechas').bootstrapSwitch('state',false);
+          } else{
+            document.getElementById('especie-busqueda-autocomplete').disabled = true;
+          };
+      });
+
+
+
+      var filtro_id = -1;
+      var especie_name;
+      //Autocomplete para filtro de registro
+      $("#especie-busqueda-autocomplete").autocomplete({
+        minChars: 1,
+        serviceUrl:'api/especies.php?function=autocomplete',
+        onSelect: function (suggestion) {
+            //$("#especie-busqueda-autocomplete").val('');
+            $.getJSON("api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
+              //alert("pruebas: "+data.nombre_comun);
+              especie_name = data.nombre_comun;
+              filtro_id = data.id;
+            });
+        },
+        showNoSuggestionNotice: true,
+        noSuggestionNotice: 'No hay coincidencias'
+    });
+
 
       var map;
       var markers = [];
@@ -47,14 +104,33 @@
             }
         });
 
+        var especie_filtro = document.getElementById('especie-busqueda-autocomplete');
         var total = data.length;
         if ( data.length === 0 ) {
+          if (especie_filtro.disabled) {
             bootbox.alert("No hay buceos dentro del área seleccionada");
-            return false;
+          } else{
+            bootbox.alert("No existen datos de "+ especie_name +" dentro del área seleccionada");
+          };
+          return false;
         }
+
         bootbox.dialog({
-          message: '<div id="chartVisualizaciones_div" style="top: 10px; width: 750px; height: 400px;"></div>' +
-                   '<div id="chartDensidad_div" style="top: 5px; width: 750px; height: 400px"></div>'
+          message: '<ul class="nav nav-tabs" id="tabContent">'+
+                      '<li role="presentation" class="active"><a href="#frecuencia"  data-toggle="tab">Frecuencia</a></li>'+
+                      '<li role="presentation"><a href="#densidad"  data-toggle="tab">Densidad</a></li>'+
+                    '</ul>'+
+                    '<div class="tab-content">'+
+                      '<div class="tab-pane active" id="frecuencia">' +
+                        '<div id="chartVisualizaciones_div"></div> '+
+                      '</div>'+
+                      '<div class="tab-pane" id="densidad">'+
+                        '<div id="chartDensidad_div"></div>'+
+                      '</div>'+
+                    '</div>',
+          onEscape: function() {
+            location.reload();
+          },
         });
 
         var array_densidad = [];
@@ -63,18 +139,32 @@
             var arreglo = [];
             arreglo.push(['Especie', 'Frecuencia']);
             $(data).each(function(index,element){
+              if (filtro_id === -1 ) {
                 arreglo.push([element.nombre_comun, element.count/total]);
                 array_densidad.push(element.id);
+              }else{
+                if (element.id === filtro_id) {
+                  arreglo.push([element.nombre_comun, element.count/total]);
+                  array_densidad.push(element.id);
+                };
+              };
             });
 
             datosGrafico = google.visualization.arrayToDataTable(arreglo);
             drawChart("buceos");
+
             $.getJSON("../api/buceo_especie.php?function=getDensidadByIdEspecie", {densidad: array_densidad.toString(), buceos: id_buceos.toString()}  , function(array_densidad,id_buceos)
             {
               var array_especies = [];
               array_especies.push(['Especie', 'Densidad']);
               $(array_densidad).each(function(index,element){
-                  array_especies.push([element.nombre_comun, parseInt(element.abundancia)]);
+                if (filtro_id === -1) {
+                    array_especies.push([element.nombre_comun, parseInt(element.abundancia)]);
+                } else{
+                  if (element.id_especie === filtro_id) {
+                    array_especies.push([element.nombre_comun, parseInt(element.abundancia)]);
+                  };
+                };
               });
               datosDensidad = google.visualization.arrayToDataTable(array_especies);
               drawChart("densidad");
@@ -88,7 +178,7 @@
           var myLatLng = new google.maps.LatLng(-36.7390, -71.05749);
           var mapOptions = {
               center: myLatLng,
-              zoom: 5,
+              zoom: 4,
               mapTypeId: google.maps.MapTypeId.SATELLITE,
               disableDefaultUI: true,
               streetViewControl: false
@@ -110,10 +200,21 @@
           google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
             var fechaIni = $("input[name='fechaInicio']").val();
             var fechaFin = $("input[name='fechaFin']").val();
+            var especie = $('#especie-busqueda-autocomplete').val();
               $(markers).each(function(index, marker){
                   if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
                     if(fechaIni ==='' ||  fechaFin ===''){
-                      marker.setVisible(true);
+                      if (especie === '') {
+                        marker.setVisible(true);
+                      } else{
+                        $.getJSON("../api/buceo_especie.php?function=getEspecieByIdBuceo",{"buceoId": marker.get("id")}, function(data){
+                          $(data).each(function(index,element){
+                            if (element.id === filtro_id) {
+                              marker.setVisible(true);
+                            }
+                          });
+                        });
+                      };
                     }else{
                         if(fechaIni < marker.fecha &&  fechaFin > marker.fecha){
                           marker.setVisible(true);
@@ -145,7 +246,6 @@
                   marker.set("id", element.id);
                   var infowindow = new google.maps.InfoWindow();    
                   google.maps.event.addListener(marker, 'click', function (target, elem) {
-
                       infowindow.setContent("Cargando...");
                       infowindow.open(map, marker);
 

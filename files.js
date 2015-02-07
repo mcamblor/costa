@@ -8,6 +8,7 @@ module.exports = function(coffee, less){
       , 'private/js/vendor/jquery.autocomplete.js'
       , 'private/js/vendor/jquery.dataTables.min.js'
       , 'private/js/vendor/jquery.bootstrap.wizard.min.js'
+      , 'private/js/vendor/bootstrap-switch.js'
       , 'private/js/vendor/mapsapi.min.js'
       , 'private/js/vendor/jsapi.min.js'
       , 'private/js/vendor/html5shiv.min.js'
@@ -24,6 +25,7 @@ module.exports = function(coffee, less){
       , 'private/css/bootstrap-theme.min.css'
       , 'private/css/bootstrapValidator.css'
       , 'private/css/jquery.dataTables.min.css'
+      , 'private/css/bootstrap-switch.css'
       , 'private/css/style.css'
   ]
   , coffee: []
