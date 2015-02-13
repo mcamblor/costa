@@ -13,6 +13,7 @@ module.exports = function(coffee, less){
       , 'private/js/vendor/jsapi.min.js'
       , 'private/js/vendor/html5shiv.min.js'
       , 'private/js/vendor/respond.min.js'
+      , 'private/js/libs/notificaciones.js'
       , 'private/js/libs/inicio.js'
       , 'private/js/libs/registro.js'
       , 'private/js/libs/busqueda.js'

@@ -274,8 +274,32 @@
           
             
             drawingManager.setMap(map);
+          
+            getMyData();
 
         }
+      
+        function getMyData(){
+          var buceo;
+          $.getJSON('api/buceos.php', { 'function' : 'getMyBuceos' }, function(data){
+            data = data.data;
+            for (var i = 0, len = data.length; i < len; ++i){
+                buceo = data[i];
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(buceo.latitud,buceo.longitud),
+                    draggable:true,
+                    animation: google.maps.Animation.DROP,
+                    map: map,
+                    title: 'titulo',
+                    icon: new google.maps.MarkerImage('img/diving.png')
+                });
+                google.maps.event.addListener(marker, 'click', markerEvent);
+            }
+          });
+        }
+      
+        function markerEvent(e){}
 
         //google.maps.event.addDomListener(window, 'load', map_init);
         map_init();

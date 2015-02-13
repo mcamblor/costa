@@ -3,6 +3,7 @@ require_once("global.php");
 require_once("bd.php");
 
 session_start();
+$nombre_usuario = $_SESSION["username"];
 
 if(isset($_GET['function'])){
 	switch ($_GET['function']) {
@@ -13,7 +14,7 @@ if(isset($_GET['function'])){
 	        echo getBuceoById($_GET['id']);
 	        break;
         case "getHistorialByIdUsuario":
-            echo getHistorialByIdUsuario($_SESSION["username"]);
+            echo getHistorialByIdUsuario($nombre_usuario);
             break;
 	}
 }
@@ -21,9 +22,20 @@ if(isset($_GET['function'])){
 if(isset($_POST['function'])){
 	switch ($_POST['function']) {
 	    case "post":
-	        echo postBuceo($_POST['buceo'], $_SESSION["username"]);
+	        echo postBuceo($_POST['buceo'], $nombre_usuario);
+	        break;
+        case "delete":
+	        echo delete($_POST['id'], $nombre_usuario);
 	        break;
 	}
+}
+
+function delete($id, $nombre_usuario){
+    $link = connect_bd();
+    $sql = "DELETE FROM buceos WHERE id = ".$id." AND nombre_usuario LIKE '".$nombre_usuario."' LIMIT 1";
+    $response = mysqli_query($link,$sql);
+    disconnect_bd($link);
+    return json_encode( array( 'result' => $response, 'consulta' => $sql ) );
 }
 
 function getBuceos(){

@@ -42,6 +42,9 @@
           case 'historial':
               $('.app-content').Historial();
               break;
+          case 'categorias':
+              $('.app-content').Categorias();
+              break;
       }
       return true;
     }).fail(function(){
