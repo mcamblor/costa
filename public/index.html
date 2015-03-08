@@ -1,85 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Costa Humboldt</title>
-<link rel="shortcut icon" href="img/icon.png">
-<link rel="stylesheet" href="all.css">
+  <meta charset="utf-8" />
+  <title>Costa Humboldt | Iniciar sesión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="icon" type="image/jpg" href="/img/favicon.png" />
+  <link rel="stylesheet" href="/all.css" type="text/css" />
 </head>
 <body>
-<div class="container-fluid">
+  <div class="container-fluid">
 
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand ruteo" data-ruta="inicio" href="#;"><img src="img/cb_logo.png"></a>
-          </div>
-          <div class="navbar-collapse collapse" id="navbar-collapse">
-              <div class="logged">
-                <ul class="nav navbar-nav">
-                  <li class="active"><a class="ruteo" data-ruta="inicio" href="#;">Inicio</a></li>
-                  <li><a class="ruteo" data-ruta="registro" href="#;">Registro</a></li>
-                  <li><a class="ruteo" data-ruta="busqueda" href="#;">Búsqueda</a></li>
-                  <!--<li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Búsqueda<span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                          <li><a class="ruteo" data-ruta="busqueda" href="#;">Búsqueda por Zona</a></li>
-                      </ul>
-                  </li>-->
-                  <li><a class="ruteo" data-ruta="historial" href="history.html">Historial</a></li>
-                </ul>
-              </div>
-              
-              <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                  <input id="especie-autocomplete" type="text" class="form-control" placeholder="Especies">
-                </div>
-              </form>
-
-            <div class="logged">
-                <p class="navbar-text navbar-right"><button id="logout" class="navbar-link"><span class="glyphicon glyphicon-off"></span></button></p>
-                <p class="navbar-text navbar-right">Bienvenido <span id="nombre_usuario"></span></p>
-            </div>
-
-            <div class="no-logged">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form id="login" class="navbar-form navbar-left" role="form">
-                            <input type="hidden" name="function" value="login"> 
-                            <div class="form-group">
-                                <input type="text" class="form-control input-sm" name="user" placeholder="Nombre usuario o Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control input-sm" name="pass" placeholder="Contraseña">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Iniciar sesión</button>
-                        </form>
-                    </li>
-                </ul>
-              </div>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4 login">
+      <img src="/img/logo.png" alt="Costa Humboldt" class="center-block">
+      <form name="form" id="form-login" autocomplete="off">
+        <h3 class="text-center title">iniciar <strong>sesión</strong></h3>
+        <div class="bb-alert alert alert-info col-md-6 col-md-offset-3" style="display:none;">
+          <span></span>
+        </div>
+        <div class="form-group">
+            <input type="text" name="username" placeholder="Nombre de usuario" class="form-control" id="username" required>
+        </div>
+        <div class="form-group">
+             <input type="password" name = "password" placeholder="Contraseña" class="form-control" id="password" required>
+        </div>
+            <button type="submit" class="btn center-block"><strong>INGRESAR</strong></button>
+        <br>
+        <br>
+            <h3 class="text-center title">¿No tienes una cuenta?</h3>
+            <button type="button" class="btn center-block registrate" data-toggle="modal" data-target="#myModal">REGÍSTRATE</button>
+      </form>
+    </div>
+  </div>
   
-      <div class="app-content"></div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo Usuario</h4>
+      </div>
+      <div class="modal-body">
+        <form id="nuevo-usuario" class="form-horizontal">
+          <div class="row">
+              <div class="col-xs-6">
 
-</div> <!-- /container -->
+                <div class="form-group">
+                    <label>Nombre Usuario</label>
+                    <input type="text" class="form-control" name="nombre_usuario">
+                </div>
 
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" class="form-control" name="email">
+                </div>
 
-<!--script type="text/javascript" src="js/private/js/vendor/jquery.min.js"></script>
-<script type="text/javascript" src="js/private/js/vendor/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/private/js/vendor/bootbox.min.js"></script>
-<script type="text/javascript" src="js/private/js/vendor/bootstrapValidator.js"></script>
-<script type="text/javascript" src="js/private/js/vendor/jquery.autocomplete.js"></script>
-<script type="text/javascript" src="js/private/js/vendor/jquery.bootstrap.wizard.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=drawing"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script-->
-<script type="text/javascript" src="all.js"></script>
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" name="nombre">
+                </div>
+
+                <div class="form-group">
+                    <label>Apellido Paterno</label>
+                    <input type="text" class="form-control" name="apellido_pat">
+                </div>
+
+                <div class="form-group">
+                    <label>Apellido Materno</label>
+                    <input type="text" class="form-control" name="apellido_mat">
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha Nacimiento</label>
+                    <input type="text" class="form-control" name="fecha_nac">
+                </div>
+
+                <div class="form-group">
+                    <label>Género</label>
+                    <div>
+                        <label class="radio-inline">
+                          <input type="radio" class="genero" name="genero" value="Masculino" checked> Masculino
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="genero"  name="genero" value="Femenino" > Femenino
+                        </label>
+                    </div>
+                </div>
+
+              </div>
+
+              <div class="col-xs-6">
+
+                <div class="form-group">
+                    <label >Contraseña</label>
+                    <input type="password" class="form-control" name="pass">
+                </div>
+
+                <div class="form-group">
+                    <label>Años de Buceo</label>
+                    <input type="text" class="form-control" name="anios_buceo">
+                </div>
+
+                <div class="form-group">
+                    <label >Horas de buceo</label>
+                    <div>
+                        <select class="form-control" name="hrs_buceo">
+                            <option value="1">Menos de 10 horas</option>
+                            <option value="2">11 - 30 horas</option>
+                            <option value="3">31 - 60 horas</option>
+                            <option value="4">61 - 100 horas</option>
+                            <option value="5">101 - 300 horas</option>
+                            <option value="6">+ 300 horas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ciudad</label>
+                    <input type="text" class="form-control" name="ciudad">
+                </div>
+
+                <div class="form-group">
+                    <label>Educación</label>
+                    <div>
+                        <label class="radio-inline">
+                          <input type="radio" class="educacion" name="educacion" value="Básica" checked> Básica
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="educacion"  name="educacion" value="Media" > Media
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="educacion"  name="educacion" value="Superior" > Superior
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="educacion"  name="educacion" value="Postítulo" > Postítulo
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Experiencia</label>
+                    <div>
+                        <label class="radio-inline">
+                          <input type="radio" class="experiencia" name="experiencia" value="Novato" checked> Novato
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="experiencia"  name="experiencia" value="Experto" > Experto
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Región</label>
+                    <div>
+                      <select class="form-control" name="regiones">
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Centro de Buceo</label>
+                    <div>
+                      <select class="form-control" name="centro_buceo">
+                      </select>
+                    </div>
+                </div>
+
+              </div>
+              <div> <input class="btn btn-success btn-block" type="submit" value="Registrarme"></div>
+          </div>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <script src="login/jquery.min.js"></script>
+  <script src="login/bootstrap.min.js"></script>
+  <script src="login/bootstrapValidator.js"></script>
+  <script src="login/notificaciones.js"></script>
+  <script src="login/login.js"></script>
 </body>
-</html>                                 		
+</html>

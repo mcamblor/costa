@@ -8,11 +8,13 @@
       document.getElementById('region-busqueda-autocomplete').disabled = true;
       google.load("visualization", "1", {packages:["corechart"], callback: function() {}});
       google.setOnLoadCallback(drawChart);
+      var ruta = "json/regiones.json";
       var chartBuceos;
       var cartDensidad;
       var datosGrafico;
       var datosDensidad;
       var options;
+      
       function drawChart(tipo) {
 
           options = {

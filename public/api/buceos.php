@@ -13,9 +13,12 @@ if(isset($_GET['function'])){
 	    case "getBuceoById":
 	        echo getBuceoById($_GET['id']);
 	        break;
-        case "getHistorialByIdUsuario":
-            echo getHistorialByIdUsuario($nombre_usuario);
-            break;
+      case "getMyBuceos":
+	        echo getHistorialByIdUsuario($nombre_usuario);
+	        break;
+      case "getHistorialByIdUsuario":
+          echo getHistorialByIdUsuario($nombre_usuario);
+          break;
 	}
 }
 
@@ -74,7 +77,7 @@ function getHistorialByIdUsuario($nombre_usuario){
 
     $dataArray = array();
     $link = connect_bd();
-    $sql = "SELECT * FROM buceos WHERE nombre_usuario LIKE '".$nombre_usuario."'";
+    $sql = "SELECT *, tipo+0 as tipoE, visibilidad+0 as visibilidadE, corriente+0 as corrienteE FROM buceos WHERE nombre_usuario LIKE '".$nombre_usuario."'";
     $result = mysqli_query($link,$sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -88,6 +91,7 @@ function getHistorialByIdUsuario($nombre_usuario){
     $response->data = $dataArray;
     return json_encode($response);
 }
+
 
 function postBuceo($buceo,$nombre_usuario){
     $object = json_decode($buceo, true);
