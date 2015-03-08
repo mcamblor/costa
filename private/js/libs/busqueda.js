@@ -8,7 +8,7 @@
       document.getElementById('region-busqueda-autocomplete').disabled = true;
       google.load("visualization", "1", {packages:["corechart"], callback: function() {}});
       google.setOnLoadCallback(drawChart);
-      var ruta = "json/regiones.json";
+      var ruta = "../js/regiones.json";
       var chartBuceos;
       var cartDensidad;
       var datosGrafico;
@@ -45,7 +45,7 @@
 
       }
       //Completar regiones
-      $.getJSON("api/regiones.php?function=get",function(data){
+      $.getJSON("../api/regiones.php?function=get",function(data){
         var options = "";
         for (var i = 0, len = data.length; i<len; ++i){
           if (data[i].id != 15) {
@@ -99,9 +99,9 @@
       //Autocomplete para filtro de registro
       $("#especie-busqueda-autocomplete").autocomplete({
         minChars: 1,
-        serviceUrl:'api/especies.php?function=autocomplete',
+        serviceUrl:'/api/especies.php?function=autocomplete',
         onSelect: function (suggestion) {
-            $.getJSON("api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
+            $.getJSON("../api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
               especie_name = data.nombre_comun;
               filtro_id = data.id;
             });
@@ -298,14 +298,6 @@
                   }else{
                     especies(num_reg, marker,region);
                   };
-                }else{
-                  bootbox.dialog({
-                    message: "Error, rango de fechas no válido.",
-                    title: "Resultado busqueda:",
-                    onEscape: function() {
-                      location.reload();
-                    },
-                  });
                 }
               }
             }

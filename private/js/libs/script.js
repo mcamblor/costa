@@ -28,7 +28,6 @@ $(document).on("ready", function(){
         onSelect: function (suggestion) {
             $("#especie-autocomplete").val('');
             $.getJSON("/api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
-              
                 var ficha = '<div class="row">'+
                               '<p><img src="'+data.ruta+'" title="'+ data.nombre_comun +'" alt="'+ data.nombre_comun +'" width="200" height="100"></p>'+
                               '<div class="col-md-4">'+
