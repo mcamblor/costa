@@ -38,6 +38,14 @@ body{
     margin-bottom: 0 !important;
 }
 
+.fix-header{
+  margin-top:5%;
+}
+
+.fix-header-link{
+  margin-top:1%;
+}
+
 .container-fluid{
     height: 100%;
     position: relative;
@@ -76,6 +84,7 @@ body{
 	height: 100%;
 	width: 100%;
 	margin: 0px;
+  margin-top: 27px;
 	padding: 0px
 }
 
@@ -181,7 +190,7 @@ max-width: none;
 .login {
 color: #fff !important;
 font-family: Neris;
-background-color: rgba(218, 218, 218, 0.34);
+background-color: rgba(218, 218, 218, 0.5);
 border-radius: 5px;
 padding-top: 5%;
 padding-bottom: 5%;

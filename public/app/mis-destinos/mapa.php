@@ -11,7 +11,7 @@
       <?php include realpath($_SERVER["DOCUMENT_ROOT"])."/app/blocks/header.html"; ?>
       <div class="app-content">
         <div id="map"></div>
-        <div id="opciones" class="controladores opciones col-md-2 col-md-offset-2">
+        <div id="opciones" class="controladores opciones col-md-10 col-md-offset-2">
           <div class="btn-group " role="group" aria-label="...">
             <button type="button" class="btn-new btn btn-primary  active">
               <strong><span class="glyphicon glyphicon-plus"></span> Nuevo</strong>
