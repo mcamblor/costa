@@ -21,25 +21,6 @@
                   }
                 }
               },
-              tipo: {
-                trigger:'blur',
-                validators: {
-                  notEmpty: {
-                    message: 'Tipo es un campo obligatorio.'
-                  }
-                }
-              },
-              tiempo: {
-                trigger:'blur',
-                validators: {
-                  notEmpty: {
-                    message: 'Tiempo es un campo obligatorio.'
-                  },
-                  numeric: {
-                    message: 'Tiempo es un campo numérico'
-                  }
-                }
-              },
               visibilidad: {
                 trigger:'blur',
                 validators: {
@@ -64,28 +45,6 @@
                   }
                 }
               },
-              temp_superficie: {
-                trigger:'blur',
-                validators: {
-                  notEmpty: {
-                    message: 'Temperatura de superficie es un campo obligatorio.'
-                  },
-                  numeric: {
-                    message: 'Temperatura de superficie es un campo numérico'
-                  }
-                }
-              },
-              temp_fondo: {
-                trigger:'blur',
-                validators: {
-                  notEmpty: {
-                    message: 'Temperatura de fondo es un campo obligatorio.'
-                  },
-                  numeric: {
-                    message: 'Temperatura de fondo es un campo numérico'
-                  }
-                }
-              },
               prof_media: {
                 trigger:'blur',
                 validators: {
@@ -94,17 +53,6 @@
                   },
                   numeric: {
                     message: 'Profundidad Media es un campo numérico'
-                  }
-                }
-              },
-              prof_maxima: {
-                trigger:'blur',
-                validators: {
-                  notEmpty: {
-                    message: 'Profundidad Máxima es un campo obligatorio.'
-                  },
-                  numeric: {
-                    message: 'Profundidad Máxima es un campo numérico'
                   }
                 }
               }
