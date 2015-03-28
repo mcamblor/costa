@@ -193,7 +193,7 @@ font-family: Neris;
 background-color: rgba(218, 218, 218, 0.5);
 border-radius: 5px;
 padding-top: 5%;
-padding-bottom: 5%;
+padding-bottom: 1%;
 }
 
 .login img {
@@ -234,4 +234,22 @@ margin-bottom: 60px;
 }
 .login input:-ms-input-placeholder { /* Internet Explorer 10+ */
    color:    #fff;
+}
+
+/*LOGO FPA*/
+
+
+.logofpa {
+  color: rgba(89, 89, 89, 0.77) !important;
+  font-family: Neris;
+  font-size: 16px;
+  background-color: rgba(218, 218, 218, 0.89);
+  border-radius: 5px;
+  margin-top: 10px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+.logofpa a{
+  font-size: 20px;
+  
 }
