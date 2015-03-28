@@ -29,21 +29,25 @@ $(document).on("ready", function(){
             $("#especie-autocomplete").val('');
             $.getJSON("/api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
                 var ficha = '<div class="row">'+
-                              '<p><img src="'+data.ruta+'" title="'+ data.nombre_comun +'" alt="'+ data.nombre_comun +'" width="200" height="100"></p>'+
-                              '<div class="col-md-4">'+
-                                  '<p><b>Nombre Común: </b></p>'  +
-                                  '<p><b>Nombre Científico: </b></p>' +
-                                  '<p><b>Distribución Geográfica: </b></p>' +
-                                  '<p><b>Descripción: </b></p>' +
-                                  '<p><b>Ecología: </b></p>' +
+                              '<div class="col-md-6 ficha-nombre">'+
+                                  '<p><b>Nombre Común: </b>' + data.nombre_comun +'</p>'  +
+                                  '<p><b>Nombre Científico: </b>' + data.nombre_cientifico + '</p>' +
                               '</div>' +
 
-                              '<div class="col-md-8">' +
-                                  '<p>' + data.nombre_comun + '</p>' +
-                                  '<p>' + data.nombre_cientifico + '</p>' +
-                                  '<p>' + data.distribucion_geografica + '</p>' +
-                                  '<p>' + data.descripcion + '</p>' +
-                                  '<p>' + data.ecologia + '</p>' +
+                              '<div class="col.md-6 ficha">'+
+                                  '<p><img class= "img-ficha" src="'+ ( data.ruta || "/img/especies/sin.jpg" )+'" title="'+ data.nombre_comun +'" alt="'+ data.nombre_comun +'" width="200" height="100"></p>'+
+                              '</div>'+
+
+                              '<div class="col-md-12 ficha" align="justify">' +
+                                '<div class="col-md-4">'+
+                                  '<p><b><u>Descripción:</u> </b><br/><br/>' + ( data.descripcion || "Sin Información" ) + '</p>' +
+                                '</div>' +
+                                '<div class="col-md-4">'+
+                                  '<p><b><u>Distribución Geográfica:</u> </b><br/><br/>' + ( data.distribucion_geografica || "Sin Información" ) + '</p>' +
+                                '</div>' +
+                                '<div class="col-md-4">'+
+                                  '<p><b><u>Ecología:</u> </b><br/><br/>' + ( data.ecologia || "Sin Información" ) + '</p>' +
+                                '</div>' +
                               '</div>' +
 
                             '</div>';

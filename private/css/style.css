@@ -235,3 +235,29 @@ margin-bottom: 60px;
 .login input:-ms-input-placeholder { /* Internet Explorer 10+ */
    color:    #fff;
 }
+
+.ficha {
+  padding-bottom: 1.3%; 
+  padding-top: 0.8%;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 80%;
+}
+
+.ficha-nombre{
+  padding-bottom: 1%; 
+  padding-top: 3%;
+}
+
+.img-ficha{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px solid #2D6C8C;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 0px 4px 15px 3px rgba(73, 181, 236, 0.35);
+-moz-box-shadow: 0px 4px 15px 3px  rgba(73, 181, 236, 0.35);
+box-shadow: 0px 4px 15px 3px  rgba(73, 181, 236, 0.35);
+
+}
