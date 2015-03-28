@@ -37,6 +37,20 @@
               </div>
             </div>
         </div>
+        <div id="logofpa-mapa" class="controladores col-md-4 col-md-offset-8 logofpa">
+          <div class="col-md-4 col-sm-12">
+            <a href="http://www.fpa.mma.gob.cl" target="_blank">
+              <img src="/img/Logo-FPA.png" class="img-responsive" alt="FPA">
+            </a>
+          </div>
+          <div class="col-md-8 hidden-sm hidden-xs hidden-md">
+            <p>Proyeto financiado por el Fondo de Protección Ambiental del Ministerio del Medio Ambiente del Año 2015</p>
+            <br>
+            <a href="http://www.fpa.mma.gob.cl" target="_blank">
+              www.fpa.mma.gob.cl
+            </a>
+          </div>
+        </div>
       </div>
     </div> <!-- /container -->
 

@@ -38,13 +38,6 @@ body{
     margin-bottom: 0 !important;
 }
 
-.fix-header{
-  margin-top:5%;
-}
-
-.fix-header-link{
-  margin-top:1%;
-}
 
 .container-fluid{
     height: 100%;
@@ -84,7 +77,6 @@ body{
 	height: 100%;
 	width: 100%;
 	margin: 0px;
-  margin-top: 27px;
 	padding: 0px
 }
 
@@ -250,6 +242,11 @@ margin-bottom: 60px;
   padding-top: 8px;
 }
 .logofpa a{
-  font-size: 20px;
-  
+  font-size: 20px; 
+}
+
+#logofpa-mapa{
+  bottom: 25px;
+  right: 10px;
+  opacity: 0.9;
 }
