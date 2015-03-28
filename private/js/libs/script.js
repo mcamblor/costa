@@ -32,41 +32,25 @@ $(document).on("ready", function(){
             $("#especie-autocomplete").val('');
             $.getJSON("/api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
                 var ficha = '<div class="row">'+
-                              '<p><img src="'+data.ruta+'" title="'+ data.nombre_comun +'" alt="'+ data.nombre_comun +'" width="200" height="100"></p>'+
-                              '<div class="col-md-4">'+
-                                  '<p><b>Nombre Común: </b></p>'  +
-                                  '<p><b>Nombre Científico: </b></p>' +
-                                  '<p><b>Kingdom: </b></p>'+
-                                  '<p><b>Phylum: </b></p>'+
-                                  '<p><b>Class: </b></p>' +
-                                  '<p><b>Order: </b></p>'  +
-                                  '<p><b>Family: </b></p>'  +
-                                  '<p><b>Genus: </b></p>'+
-                                  '<p><b>Aphia: </b></p>' +
-                                  '<p><b>Distribución Geográfica: </b></p>' +
-                                  '<p><b>Descripción: </b></p>' +
-                                  '<p><b>Ecología: </b></p>' +
-                                  '<p><b>Importancia Económica: </b></p>'  +
-                                  '<p><b>Biología Reproductiva: </b></p>'  +
-                                  '<p><b>Referencias: </b></p>' +
+                              '<div class="col-md-6 ficha-nombre">'+
+                                  '<p><b>Nombre Común: </b>' + data.nombre_comun +'</p>'  +
+                                  '<p><b>Nombre Científico: </b>' + data.nombre_cientifico + '</p>' +
                               '</div>' +
 
-                              '<div class="col-md-8">' +
-                                  '<p>' + data.nombre_comun + '</p>' +
-                                  '<p>' + data.nombre_cientifico + '</p>' +
-                                  '<p>' + data.kingdom + '</p>' +
-                                  '<p>' + data.phylum + '</p>' +
-                                  '<p>' + data.class + '</p>' +
-                                  '<p>' + data.order + '</p>' +
-                                  '<p>' + data.family + '</p>' +
-                                  '<p>' + data.genus + '</p>' +
-                                  '<p>' + data.aphia + '</p>' +
-                                  '<p>' + data.distribucion_geografica + '</p>' +
-                                  '<p>' + data.descripcion + '</p>' +
-                                  '<p>' + data.ecologia + '</p>' +
-                                  '<p>' + data.importancia_economica + '</p>' +
-                                  '<p>' + data.biologia_reproductiva + '</p>' +
-                                  '<p>' + data.referencias + '</p>' +
+                              '<div class="col.md-6 ficha">'+
+                                  '<p><img class= "img-ficha" src="'+ ( data.ruta || "/img/especies/sin.jpg" )+'" title="'+ data.nombre_comun +'" alt="'+ data.nombre_comun +'" width="200" height="100"></p>'+
+                              '</div>'+
+
+                              '<div class="col-md-12 ficha" align="justify">' +
+                                '<div class="col-md-4">'+
+                                  '<p><b><u>Descripción:</u> </b><br/><br/>' + ( data.descripcion || "Sin Información" ) + '</p>' +
+                                '</div>' +
+                                '<div class="col-md-4">'+
+                                  '<p><b><u>Distribución Geográfica:</u> </b><br/><br/>' + ( data.distribucion_geografica || "Sin Información" ) + '</p>' +
+                                '</div>' +
+                                '<div class="col-md-4">'+
+                                  '<p><b><u>Ecología:</u> </b><br/><br/>' + ( data.ecologia || "Sin Información" ) + '</p>' +
+                                '</div>' +
                               '</div>' +
 
                             '</div>';

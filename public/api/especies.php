@@ -55,7 +55,7 @@ function getEspecieById($id){
 
     $especie = new stdClass();
     $link = connect_bd();
-    $sql = "SELECT * FROM especies WHERE id = ".$id." LIMIT 1";
+    $sql = "SELECT nombre_comun, nombre_cientifico, distribucion_geografica, descripcion, ecologia, ruta FROM especies WHERE id = ".$id." LIMIT 1";
     $result = mysqli_query($link,$sql);
     if( mysqli_num_rows($result) > 0 ){
         $especie = mysqli_fetch_assoc($result);
