@@ -21,6 +21,9 @@ $(document).on("ready", function(){
         }, 'json');
             
     });
+  
+    var usuario = JSON.parse(localStorage.getItem("usuario"));
+    $('.nombre-usuario').text(usuario.nombre_usuario);
     
     $("#especie-autocomplete").autocomplete({
         minChars: 1,

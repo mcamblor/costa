@@ -35,7 +35,7 @@ $(document).ready(function(){
         })
         .done(function( data ) {
           if(data.session == "true"){
-            localStorage.setItem("usuario", JSON.stringify(data.usuarios));
+            localStorage.setItem("usuario", JSON.stringify(data.usuario));
             location.href = "app/mis-destinos/mapa.php";
           }
           else{
