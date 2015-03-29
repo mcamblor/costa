@@ -24,6 +24,39 @@ $(document).on("ready", function(){
   
     var usuario = JSON.parse(localStorage.getItem("usuario"));
     $('.nombre-usuario').text(usuario.nombre_usuario);
+
+    $('#changepassword').on('click', function(){
+      $.get('/app/cambio-contrasena.html', function(data){
+        bootbox.dialog({
+            title : 'Cambiar Contraseña'
+          , message : data
+          , buttons: {
+              success: {   
+                label: "Guardar cambios",
+                className: "btn-success",
+                callback: function() {
+                  $.post('/api/usuarios.php', {
+                    "function":"cambiarPassword"
+                    , "currentPassword" : $("#currentPassword").val()
+                    , "newPassword": $("#newPassword").val()
+                  }, function(data){
+                      if(data.valid) {
+                        //Contraseña cambiada correctamente
+                      }
+                      else {
+                        //Hubo un error al cambiar la contraseña
+                      }
+                  }, 'json');
+                }
+              },
+              "Cancelar": {
+                className: "btn-danger",
+                callback: function() {}
+              }
+          }
+        });
+      });
+    });
     
     $("#especie-autocomplete").autocomplete({
         minChars: 1,
