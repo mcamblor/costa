@@ -96,6 +96,7 @@ function getHistorialByIdUsuario($nombre_usuario){
 function postBuceo($buceo,$nombre_usuario){
     $object = json_decode($buceo, true);
     $link = connect_bd();
+    mysqli_autocommit($link, FALSE);
     $sql  = "INSERT INTO buceos VALUES (";
     $sql .= "NULL,"; //id
     $sql .= "'".$object['latitud']."',";
@@ -122,8 +123,28 @@ function postBuceo($buceo,$nombre_usuario){
     {
         $error = "";
         $id = mysqli_insert_id($link);
+        $sql = "INSERT INTO buceo_habitat VALUES ";
+        if (is_array($object['habitat'])){
+          foreach ($object['habitat'] as $habitat){
+            $sql .= "(".$habitat.",".$id."),";
+          }
+          $sql = trim($sql, ',');
+        }
+        else {
+          $sql .= "(".$object['habitat'].",".$id.")";
+        }
+        $result = mysqli_query($link, $sql);
+        if (!$result)
+        {
+            $error = mysqli_error($link);
+            $id = -1;
+        }
+        else {
+          mysqli_commit($link);
+        }
+        
     }
     disconnect_bd($link);
-    return json_encode( array( 'valid' => $result, 'id' => $id,'error' => $error ) );
+    return json_encode( array( 'valid' => $result, 'id' => $id,'error' => $error, 'consulta' => $sql ) );
 }
 ?>

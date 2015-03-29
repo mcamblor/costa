@@ -102,9 +102,13 @@
                     title: "Nuevo Buceo",
                     message: data,
                     className: "modalbuceo"
+                }).on('shown.bs.modal', function(){
+                  $('[data-toggle="popover"]').popover();
+                  $('.bootbox').removeAttr('tabindex');
+                  completarSelect('habitat');
                 });
                 $formBuceos = $('form#buceos');
-                completarSelect('habitat');
+                
                 $formBuceos.bootstrapValidator(validaciones)              
                 .on('success.form.bv', function(e) {
                     e.preventDefault();
@@ -136,6 +140,7 @@
                     options +=  "<option value='" + data[i].id + "'>" + data[i].data + "</option>";
                 }
                 $("[name='"+campo+"']").html(options);
+                $("select").select2();
             });
         }
       
@@ -152,7 +157,7 @@
             $.getJSON("/api/especies.php?function=get",function(data){
                 var options = "";
                 for (var i = 0, len = data.length; i<len; ++i){
-                    options +=  "<option value='" + data[i].id + "'>" + data[i].nombre_comun + "</option>";
+                    options +=  "<option value='" + data[i].id + "'>" + data[i].nombre_comun + " - " + data[i].nombre_cientifico + "</option>";
                 }
                 $("[name='especie']").html(options);
             });
@@ -290,11 +295,15 @@
           
           var buceo = this.dataBuceo;
           $.get('/app/registro-buceo.html', function(data){
-                dialog = bootbox.dialog({
-                  title: "Editar Buceo",
-                  message: data,
-                  className: "modalbuceo"
+              dialog = bootbox.dialog({
+                title: "Editar Buceo",
+                message: data,
+                className: "modalbuceo"
+              }).on('shown.bs.modal', function(){
+                $('[data-toggle="popover"]').popover();
+                $('.bootbox').removeAttr('tabindex');
               });
+              
               $formBuceos = $('form#buceos');
               completarSelect('habitat');
               completarFormulario(buceo);

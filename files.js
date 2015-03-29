@@ -13,6 +13,7 @@ module.exports = function(coffee, less){
       , 'private/js/vendor/jsapi.min.js'
       , 'private/js/vendor/html5shiv.min.js'
       , 'private/js/vendor/respond.min.js'
+      , 'private/js/vendor/select2.full.min.js'
       , 'private/js/libs/serialize.js'
       , 'private/js/libs/notificaciones.js'
       , 'private/js/libs/inicio.js'
@@ -28,6 +29,7 @@ module.exports = function(coffee, less){
       , 'private/css/bootstrapValidator.css'
       , 'private/css/jquery.dataTables.min.css'
       , 'private/css/bootstrap-switch.css'
+      , 'private/css/select2.min.css'
       , 'private/css/style.css'
   ]
   , coffee: []

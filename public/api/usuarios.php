@@ -2,6 +2,9 @@
 require_once("global.php");
 require_once("bd.php");
 
+session_start();
+$nombre_usuario = $_SESSION["username"];
+
 if(isset($_GET['function'])){
 	switch ($_GET['function']) {
 	    case "comprobarNombreUsuario":
@@ -16,6 +19,9 @@ elseif(isset($_POST['function'])){
     switch ($_POST['function']) {
         case "nuevoUsuario":
             echo nuevoUsuario($_POST['usuario']);
+            break;
+        case "cambiarPassword":
+            echo cambiarPassword($nombre_usuario, $_POST['currentPassword'], $_POST['newPassword']);
             break;
     }
 }
@@ -76,4 +82,11 @@ function nuevoUsuario($usuario){
     return json_encode( array( 'valid' => $result ) );
 }
 
+function cambiarPassword($usuario, $currentPassword, $newPassword){
+    $link = connect_bd();
+    $sql  = "UPDATE usuarios SET pass = '".$newPassword."' WHEN pass = '".$currentPassword."' and nombre_usuario = '".$usuario;
+    $result = mysqli_query($link,$sql);
+    disconnect_bd($link);
+    return json_encode( array( 'valid' => $result ) ); 
+}
 ?>

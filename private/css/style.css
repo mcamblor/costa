@@ -280,3 +280,11 @@ margin-bottom: 60px;
 box-shadow: 0px 4px 15px 3px  rgba(73, 181, 236, 0.35);
 
 }
+
+.popover{
+z-index: 999999;
+}
+
+input#especie-autocomplete {
+  width: 600px;
+}

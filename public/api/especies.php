@@ -71,12 +71,15 @@ function autocomplete($query){
     $suggestions = array();
 
     $link = connect_bd();
-    $sql = "SELECT id as data, nombre_comun as value FROM especies WHERE nombre_comun LIKE '%".$query."%'";
+    $sql = "SELECT id as data, nombre_comun, nombre_cientifico FROM especies WHERE nombre_comun LIKE '%".$query."%' OR nombre_cientifico LIKE '%".$query."%'";
     $result = mysqli_query($link,$sql);
     if($result!=NULL){
         if(mysqli_num_rows($result)>0){
           while($row=mysqli_fetch_assoc($result)){
-            array_push($suggestions,$row);
+            $sugg = new stdClass();
+            $sugg->data = $row['data'];
+            $sugg->value = $row['nombre_comun']." - ".$row['nombre_cientifico'];
+            array_push($suggestions,$sugg);
           }
         }
         mysqli_free_result($result);

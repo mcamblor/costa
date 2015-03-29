@@ -338,7 +338,7 @@
                                     '<div id="bodyContent">'+
 
                                     '<div class="panel panel-info">' +
-                                    '<div class="panel-heading"><h4>Información de buceo</h4></div>'+
+                                    '<div class="panel-heading"><h3 class="panel-title">Información de buceo</h3></div>'+
                                     '<div class="panel-body">' +
 
                                     '<div class="row">'+
