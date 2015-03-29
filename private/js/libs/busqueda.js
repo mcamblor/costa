@@ -322,7 +322,6 @@
             var infowindow = new google.maps.InfoWindow();    
             google.maps.event.addListener(marker, 'click', function (target, elem) {
               infowindow.setContent("Cargando...");
-              infowindow.open(map, marker);
               infowindow.maxWidth = 450;
 
               $.getJSON("../api/buceos.php?function=getBuceoById",{"id": marker.get("id")}, function(data){
@@ -339,11 +338,12 @@
 
                                     '<div class="panel panel-info">' +
                                     '<div class="panel-heading"><h3 class="panel-title">Información de buceo</h3></div>'+
+
                                     '<div class="panel-body">' +
 
-                                    '<div class="row">'+
+                                    
 
-                                    '<div class="col-md-8">'+
+                                    '<div class="col-md-6">'+
                                     '<p><b>Latitud</b></p>' +
                                     '<p><b>Longitud</b></p>' +
                                     '<p><b>Usuario</b></p>' +
@@ -351,14 +351,14 @@
                                     '<p><b>Corriente</b></p>' +
                                     '<p><b>Profundidad máxima</b></p>' +
                                     '<p><b>Profundidad media</b></p>' +
-                                    '<p><b>Temperatura fondo</b></p>' +
-                                    '<p><b>Temperatura superficie</b></p>' +
+                                    '<p><b>T° fondo</b></p>' +
+                                    '<p><b>T° superficie</b></p>' +
                                     '<p><b>Tiempo</b></p>' +
                                     '<p><b>Tipo</b></p>' +
                                     '<p><b>Visibilidad</b></p>' +
                                     '</div>' +
 
-                                    '<div class="col-md-4">' +
+                                    '<div class="col-md-6">' +
                                     '<p>' + data.latitud + '</p>' +
                                     '<p>' + data.longitud + '</p>' +
                                     '<p>' + data.nombre_usuario + '</p>' +
@@ -377,10 +377,10 @@
                                     '</div>' +
                                     '</div>' +
 
-                                    '</div>'+
                                     '</div>';
 
                 infowindow.setContent(contentString);
+                infowindow.open(map, marker);
               });
             });
             markers.push(marker);
