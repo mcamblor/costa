@@ -218,7 +218,7 @@
             var mapOptions = {
                 center: myLatLng,
                 zoom: 5,
-                mapTypeId: google.maps.MapTypeId.SATELLITE,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
                 disableDefaultUI: true,
                 streetViewControl: false
             };

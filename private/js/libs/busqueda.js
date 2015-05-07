@@ -20,9 +20,10 @@
           options = {
             height: 600,
             width: 700,
+            chartArea: {width: '50%'},
             title: 'Frecuencia de especies visualizadas',
             vAxis: { textStyle: {fontName: 'arial', fontSize: 10} },
-            hAxis: {textStyle: {fontName: 'arial', fontSize: 10}},
+            hAxis: {title: 'Frecuencia: Razón de avistamientos respecto a la totalidad de buceos registrados.', minValue: 0, textStyle: {fontName: 'arial', fontSize: 10}},
           };
 
           chartBuceos = new google.visualization.BarChart(document.getElementById('chartVisualizaciones_div'));
@@ -36,9 +37,10 @@
             options = {
               height: 600,
               width: 700,
+              chartArea: {width: '50%'},
               title: 'Densidad de especies visualizadas',
               vAxis: { textStyle: {fontName: 'arial', fontSize: 10} },
-              hAxis: { ticks: [{v:0, f:''},{v:1, f:'Único'}, {v:2, f:'Poco Abundante'}, {v:3, f:'Abundante'}, {v:4, f:'Muy Abundate'}],textStyle: {fontName: 'arial', fontSize: 10} }
+              hAxis: {title: 'Densidad: Moda de abundancias reportadas', ticks: [{v:0, f:''},{v:1, f:'Único'}, {v:2, f:'Poco Abundante'}, {v:3, f:'Abundante'}, {v:4, f:'Muy Abundate'}],textStyle: {fontName: 'arial', fontSize: 10} }
             };
              cartDensidad.draw(datosDensidad, options);
           }
@@ -102,8 +104,8 @@
         serviceUrl:'/api/especies.php?function=autocomplete',
         onSelect: function (suggestion) {
             $.getJSON("../api/especies.php?function=getEspecieById",{"id":suggestion.data},function(data){
-              especie_name = data.nombre_comun;
-              filtro_id = data.id;
+              especie_name = data.nombre_cientifico;
+              filtro_id = suggestion.data;
             });
         },
         showNoSuggestionNotice: true,
@@ -158,15 +160,15 @@
         $.getJSON("../api/buceo_especie.php?function=getEspeciesByIdBuceo", {buceos: data.toString()}, function(data)
         {                     
           var arreglo = [];
-          arreglo.push(['Especie', 'Frecuencia']);
+          arreglo.push(['Especie', 'Frecuencia', {type: 'string', role: 'tooltip'}]);
           $(data).each(function(index,element){
             //Filtro datos para grafo frecuencia según especie
             if (filtro_id === -1 ) {
-              arreglo.push([element.nombre_comun, element.count/total]);
+              arreglo.push([element.nombre_cientifico, element.count/total, element.nombre_comun]);
               array_densidad.push(element.id);
             }else{
               if (element.id === filtro_id) {
-                arreglo.push([element.nombre_comun, element.count/total]);
+                arreglo.push([element.nombre_cientifico, element.count/total, element.nombre_comun]);
                 array_densidad.push(element.id);
               };
             };
@@ -179,15 +181,15 @@
           {
             var array_especies = [];
             var ant_id = 0;
-            array_especies.push(['Especie', 'Densidad']);
+            array_especies.push(['Especie', 'Densidad', {type: 'string', role: 'tooltip'}]);
             $(array_densidad).each(function(index,element){
               //Filtro datos para grafo densidad según especie
               if (element.id_especie != ant_id) {
                 if (filtro_id === -1) {
-                    array_especies.push([element.nombre_comun, parseInt(element.abundancia)]);
+                    array_especies.push([element.nombre_cientifico, parseInt(element.abundancia), element.nombre_comun]);
                 } else{
                   if (element.id_especie === filtro_id) {
-                    array_especies.push([element.nombre_comun, parseInt(element.abundancia)]);
+                    array_especies.push([element.nombre_cientifico, parseInt(element.abundancia), element.nombre_comun]);
                   };
                 };
               };
@@ -249,7 +251,7 @@
         var mapOptions = {
             center: myLatLng,
             zoom: 4,
-            mapTypeId: google.maps.MapTypeId.SATELLITE,
+            mapTypeId: google.maps.MapTypeId.HYBRID,
             disableDefaultUI: false,
             streetViewControl: false,
             scaleControl: true,
@@ -275,6 +277,7 @@
           var especie = $('#especie-busqueda-autocomplete').val();
           var region = document.getElementById('region-busqueda-autocomplete').disabled;
           var num_reg = $('#region-busqueda-autocomplete').val();
+          
           $(markers).each(function(index, marker){
             if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
               if(fechaIni ==='' ||  fechaFin ===''){
@@ -302,10 +305,23 @@
               }
             }
           });
+          google.maps.event.addListener(polygon.getPath(), 'set_at', function() {
+            $(markers).each(function(index, marker){
+              if (!google.maps.geometry.poly.containsLocation(marker.position, polygon)){
+                //alert("Se realiza modificacion de poligono");
+                marker.setVisible(false);
+              }else{
+                marker.setVisible(true);
+              }
+            });
+          });
+
           drawingManager.setOptions({
             drawingMode: null
           });
         });
+
+        
         drawingManager.setMap(map);
 
         $.getJSON("../api/buceos.php?function=getBuceos", function(data){
